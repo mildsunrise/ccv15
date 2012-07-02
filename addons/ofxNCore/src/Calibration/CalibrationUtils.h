@@ -13,7 +13,7 @@
 
 //Used other calibration
 #include "rect2d.h"
-#include "vector2d.h"
+#include "ofxVec2f.h"
 //#include "windows.h"
 #include "memory.h"
 #include "ofMain.h"
@@ -28,9 +28,9 @@ class CalibrationUtils
 		virtual void nextCalibrationStep();
 		virtual void revertCalibrationStep();
 		void nextCameraCalibration();
-		vector2df* screenPoints;
-		vector2df* cameraPoints;
-		vector2df* drawingPoints;
+		ofxVec2f* screenPoints;
+		ofxVec2f* cameraPoints;
+		ofxVec2f* drawingPoints;
 		bool bCalibrating;
 		bool bGoToNextStep;
 		bool bNextCamera;

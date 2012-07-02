@@ -11,7 +11,7 @@
 #define OFX_CAMERABASE_SETTINGS_H
 
 #include <vector>
-#include "vector2d.h"
+#include "ofxVec2f.h"
 //#include <windows.h>
 
 typedef enum
@@ -75,7 +75,7 @@ typedef struct ofxCameraBaseCalibration
 {
 	ofxCameraBase* camera;
 	int index;
-	std::vector<vector2df> calibrationPoints;
+	std::vector<ofxVec2f> calibrationPoints;
 }ofxCameraBaseCalibration;
 
 #endif // OFX_CAMERABASE_SETTINGS_H
