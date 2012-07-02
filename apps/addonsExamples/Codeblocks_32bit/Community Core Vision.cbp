@@ -5,7 +5,7 @@
 		<Option title="Community Core Vision" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="addons/;src/;addons/ofxDirList/src;addons/ofxNetwork/src;addons/ofxOpenCv/src;addons/ofxOsc/src;addons/ofxThread/src;addons/ofxVectorGraphics/src;addons/ofxVectorMath/src;addons/ofxXmlSettings/src;addons/ofxDirList/src/;addons/ofxNetwork/src/;addons/ofxOpenCv/src/;addons/ofxOsc/src/;addons/ofxThread/src/;addons/ofxVectorGraphics/src/;addons/ofxVectorMath/src/;addons/ofxXmlSettings/src/;addons/ofxFiducialFinder/;addons/ofxFiducialFinder/libfidtrack/;addons/ofxDirList/;addons/ofxNCore/;addons/ofxNCore/src/;addons/ofxNCore/src/Calibration/;addons/ofxNCore/src/Camera/;addons/ofxNCore/src/Communication/;addons/ofxNCore/src/Events/;addons/ofxNCore/src/Controls/;addons/ofxNCore/src/Filters/;addons/ofxNCore/src/Modules/;addons/ofxNCore/src/Templates/;addons/ofxNCore/src/Tracking/;addons/ofxXmlSettings/src/libs/;addons/ofxVectorGraphics/libs/;addons/ofxCameraBase/src/;addons/ofxCameraBase/inc/;addons/ofxMultiplexer/src/;addons/ofxMultiplexer/inc/;" />
+		<Option virtualFolders="addons/;src/;addons/ofxDirList/src;addons/ofxNetwork/src;addons/ofxOpenCv/src;addons/ofxOsc/src;addons/ofxThread/src;addons/ofxVectorGraphics/src;addons/ofxVectorMath/src;addons/ofxXmlSettings/src;addons/ofxDirList/src/;addons/ofxNetwork/src/;addons/ofxOpenCv/src/;addons/ofxOsc/src/;addons/ofxThread/src/;addons/ofxVectorGraphics/src/;addons/ofxVectorMath/src/;addons/ofxXmlSettings/src/;addons/ofxFiducialFinder/;addons/ofxFiducialFinder/libfidtrack/;addons/ofxDirList/;addons/ofxNCore/;addons/ofxNCore/src/;addons/ofxNCore/src/Calibration/;addons/ofxNCore/src/Camera/;addons/ofxNCore/src/Communication/;addons/ofxNCore/src/Events/;addons/ofxNCore/src/Controls/;addons/ofxNCore/src/Filters/;addons/ofxNCore/src/Modules/;addons/ofxNCore/src/Templates/;addons/ofxNCore/src/Tracking/;addons/ofxXmlSettings/src/libs/;addons/ofxVectorGraphics/libs/;addons/ofxCameraBase/src/;addons/ofxCameraBase/inc/;addons/ofxMultiplexer/src/;addons/ofxMultiplexer/inc/;addons/ofxFFMV/src/;addons/ofxFFMV/lib/;addons/ofxFFMV/dll/;" />
 		<Build>
 			<Target title="Debug">
 				<Option output="bin/$(PROJECT_NAME)_debug" prefix_auto="1" extension_auto="1" />
@@ -90,6 +90,7 @@
 			<Add directory="../../../addons/ofxCameraBase/inc" />
 			<Add directory="../../../addons/ofxMultiplexer/src" />
 			<Add directory="../../../addons/ofxMultiplexer/inc" />
+			<Add directory="../../../addons/ofxFFMV/src" />
 		</Compiler>
 		<Linker>
 			<Add library="fmodex" />
@@ -115,7 +116,6 @@
 			<Add directory="../../../libs/gstappsink/lib/linux" />
 			<Add directory="../../../libs/fmodex/lib/linux" />
 			<Add directory="../../../libs/poco/lib/linux" />
-			<Add directory="../../../libs/openFrameworksCompiled/lib/linux" />
 		</Linker>
 		<ExtraCommands>
 			<Add after="#" />
@@ -124,6 +124,18 @@
 			<Add after="cp -r ../../../export/linux/libs $(PROJECT_DIR)bin/" />
 			<Mode after="always" />
 		</ExtraCommands>
+		<Unit filename="../../../addons/ofxFFMV/src/ofxffmv.cpp">
+			<Option virtualFolder="addons/ofxFFMV/src" />
+		</Unit>
+		<Unit filename="../../../addons/ofxFFMV/src/ofxffmv.h">
+			<Option virtualFolder="addons/ofxFFMV/src" />
+		</Unit>
+		<Unit filename="../../../addons/ofxFFMV/src/pgrcameragui.h">
+			<Option virtualFolder="addons/ofxFFMV/src" />
+		</Unit>
+		<Unit filename="../../../addons/ofxFFMV/src/pgrflycapture.h">
+			<Option virtualFolder="addons/ofxFFMV/src" />
+		</Unit>
 		<Unit filename="../../../addons/ofxMultiplexer/src/ofxMultiplexer.cpp">
 			<Option virtualFolder="addons/ofxMultiplexer/src" />
 		</Unit>
