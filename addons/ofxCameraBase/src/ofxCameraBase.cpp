@@ -90,11 +90,11 @@ void ofxCameraBase::updateCurrentFrame()
 	getNewFrame(depth>1 ? rawCameraFrame : cameraFrame);
 	if (depth>1)
 	{
-		int size = width*height;
+		unsigned int size = width*height;
 		if (isRaw)
 		{
 			//RGGB
-			int x,y,index;
+			unsigned int x,y,index;
 			float r = 0.0f;
 			switch (isRaw)
 			{
@@ -230,7 +230,7 @@ void ofxCameraBase::updateCurrentFrame()
 		}
 		else
 		{
-			for (int i=0;i<size;i++)
+			for (unsigned int i=0;i<size;i++)
 				cameraFrame[i] = (unsigned char)(0.3f*(float)rawCameraFrame[i*depth+2] + 0.59f*(float)rawCameraFrame[i*depth+1] +0.11f*(float)rawCameraFrame[i*depth]) ;
 		}
 	}
@@ -300,7 +300,7 @@ void ofxCameraBase::loadCameraSettings(ofxXmlSettings* xmlSettings)
 	if (settingValue>-0xFFFF)
 	{
 		int isFoundPropertyIndex = -1;
-		for (int k=0;k<cameraBaseSettings->propertyType.size();k++)
+		for (unsigned int k=0;k<cameraBaseSettings->propertyType.size();k++)
 		{
 			if (cameraBaseSettings->propertyType[k] == BASE_WHITE_BALANCE)
 			{
@@ -326,7 +326,7 @@ void ofxCameraBase::loadCameraSettings(ofxXmlSettings* xmlSettings)
 	if (settingValue>-0xFFFF)
 	{
 		int isFoundPropertyIndex = -1;
-		for (int k=0;k<cameraBaseSettings->propertyType.size();k++)
+		for (unsigned int k=0;k<cameraBaseSettings->propertyType.size();k++)
 		{
 			if (cameraBaseSettings->propertyType[k] == BASE_WHITE_BALANCE)
 			{
@@ -662,7 +662,7 @@ void ofxCameraBase::receiveSettingsFromCamera()
 	{
 		getCameraFeature(supportedFeatures[i],&firstValue,&secondValue,&isAuto,&isEnabled,&minValue,&maxValue);
 		bool isNewFeature = true;
-		for (int j=0;j<cameraBaseSettings->propertyType.size();j++)
+		for (unsigned int j=0;j<cameraBaseSettings->propertyType.size();j++)
 		{
 			if ((cameraBaseSettings->propertyType[j] == supportedFeatures[i]) && (isEnabled && (firstValue >-0xFFFF) && (secondValue>-0xFFFF)))
 			{
@@ -718,7 +718,7 @@ void ofxCameraBase::saveCameraSettings()
 					xmlSettings->setValue("SETTINGS:SENSOR:MODE", (int)cameraPixelMode);
 					xmlSettings->setValue("SETTINGS:SENSOR:DEPTH", (int)depth);
 
-					for (int j=0;j<cameraBaseSettings->propertyType.size();j++)
+					for (unsigned int j=0;j<cameraBaseSettings->propertyType.size();j++)
 					{
 						switch (cameraBaseSettings->propertyType[j])
 						{
@@ -867,7 +867,7 @@ void ofxCameraBase::saveCameraSettings()
 		xmlSettings->pushTag("SENSOR", 0);
 		xmlSettings->setValue("MODE", (int)cameraPixelMode);
 		xmlSettings->setValue("DEPTH", depth);
-		for (int j=0;j<cameraBaseSettings->propertyType.size();j++)
+		for (unsigned int j=0;j<cameraBaseSettings->propertyType.size();j++)
 		{
 			switch (cameraBaseSettings->propertyType[j])
 			{
