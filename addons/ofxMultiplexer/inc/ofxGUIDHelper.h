@@ -5,8 +5,29 @@
 #include <string>
 #include <vector>
 #include <iostream>
-#include <windows.h>
 #include <conio.h>
+
+#ifdef TARGET_WIN32
+#include <windows.h>
+#else
+//Define the GUID type ourselves
+typedef struct _GUID {          // size is 16
+    unsigned int    Data1;
+    unsigned short  Data2;
+    unsigned short  Data3;
+    unsigned char   Data4[8];
+} GUID;
+
+//...and the == operator
+bool operator==(const GUID& lhs, const GUID& rhs) {
+    if (lhs.Data1 != rhs.Data1) return false;
+    if (lhs.Data2 != rhs.Data2) return false;
+    if (lhs.Data3 != rhs.Data3) return false;
+    for (int i=0; i<8; i++)
+        if (lhs.Data4[i] != rhs.Data4[i]) return false;
+    return true;
+}
+#endif
 
 //Convert an hex string to a number
 template<class T> T HexToInt(const std::string &str);
