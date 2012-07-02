@@ -42,8 +42,8 @@ std::string IntToString(const int &value)
 
 std::string GUIDToString(const GUID &guid)
 {
-	if ((guid.Data2 == 0) && (guid.Data3 == 0) && 
-		(guid.Data4[0] == 0) && 
+	if ((guid.Data2 == 0) && (guid.Data3 == 0) &&
+		(guid.Data4[0] == 0) &&
 		(guid.Data4[1] == 0) &&
 		(guid.Data4[2] == 0) &&
 		(guid.Data4[3] == 0) &&
@@ -103,7 +103,6 @@ std::string GUIDToString(const GUID &guid)
 GUID StringToGUID(const std::string &str)
 {
 	GUID result;
-	memset((void*)&result,0,sizeof(result));
 	if (str.length()==38)
 	{
 		result.Data1 = HexToInt<unsigned long>(str.substr(1,8));
@@ -128,6 +127,17 @@ GUID StringToGUID(const std::string &str)
 			ret+=(str[i]-'0');
 		}
 		result.Data1 = ret;
+
+	    result.Data2=0;
+	    result.Data3=0;
+	    result.Data4[0]=0;
+	    result.Data4[1]=0;
+	    result.Data4[2]=0;
+	    result.Data4[3]=0;
+	    result.Data4[4]=0;
+	    result.Data4[5]=0;
+	    result.Data4[6]=0;
+	    result.Data4[7]=0;
 	}
 	return result;
 }
