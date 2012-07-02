@@ -1,6 +1,6 @@
 /*
 *  ofxCameraBase.h
-*  
+*
 *  Created on 12/03/11.
 *  Copyright 2011 NUI Group. All rights reserved.
 *  Author: Anatoly Churikov
@@ -12,7 +12,7 @@
 #define _MAX_CAMERAS_ 16
 #define _MAX_FRAME_LIFETIME_ 3
 
-#include <windows.h>
+//#include <windows.h>
 #include "ofxCameraBaseSettings.h"
 #include "ofMain.h"
 #include "ofxGUIDHelper.h"
@@ -56,11 +56,11 @@ public:
 	//get current value of feature with min and max value
 	virtual void getCameraFeature(CAMERA_BASE_FEATURE featureCode,int* firstValue,int* secondValue, bool* isAuto, bool* isEnabled,int* minValue,int* maxValue) {}
 	//get number of connected cameras
-	virtual int getCameraBaseCount() {return 0;}	
+	virtual int getCameraBaseCount() {return 0;}
 	//public getter of camera frame size and depth
 	void getCameraSize(unsigned int* cameraWidth,unsigned int* cameraHeight,unsigned char* cameraDepth,unsigned char* pixelMode);
 	//public getter of cameraFrame
-	void getCameraFrame(unsigned char* newFrameData);	
+	void getCameraFrame(unsigned char* newFrameData);
 	//public getter of camera index position
 	int getCameraIndex(){return index;}
 	//public getter of camera global identifier
@@ -87,7 +87,7 @@ public:
 	virtual GUID* getBaseCameraGuids(int* camCount) { return NULL; }
 	//get camera supported features
 	virtual CAMERA_BASE_FEATURE* getSupportedFeatures(int* featuresCount) { *featuresCount = 0; return NULL; }
-	//reading camera settings from XML 
+	//reading camera settings from XML
 	void loadCameraSettings();
 	//saving camera settings to XML
 	void saveCameraSettings();

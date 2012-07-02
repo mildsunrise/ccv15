@@ -1,6 +1,6 @@
 /*
 *  CalibrationUtils.h
-*  
+*
 *
 *  Created on 2/2/09.
 *  Copyright 2009 NUI Group. All rights reserved.
@@ -14,7 +14,7 @@
 //Used other calibration
 #include "rect2d.h"
 #include "vector2d.h"
-#include "windows.h"
+//#include "windows.h"
 #include "memory.h"
 #include "ofMain.h"
 

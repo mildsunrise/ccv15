@@ -1,6 +1,6 @@
 /*
 *  ofxCameraBaseSettings.h
-*  
+*
 *
 *  Created on 12/03/11.
 *  Copyright 2011 NUI Group. All rights reserved.
@@ -12,9 +12,9 @@
 
 #include <vector>
 #include "vector2d.h"
-#include <windows.h>
+//#include <windows.h>
 
-typedef enum 
+typedef enum
 {
 	PS3,
 	CMU,
@@ -23,7 +23,7 @@ typedef enum
 	KINECT
 } CAMERATYPE;
 
-typedef enum 
+typedef enum
 {
 	BASE_BRIGHTNESS,
 	BASE_EXPOSURE,
@@ -46,16 +46,16 @@ typedef enum
 	BASE_MOTOR_LED,
 	DEPTH_NEAR_BOUND,
 	DEPTH_FAR_BOUND,
-	BASE_HFLIP,				
-	BASE_VFLIP,				
-	BASE_HKEYSTONE,			
-	BASE_VKEYSTONE,			
-	BASE_XOFFSET,				
-	BASE_YOFFSET,				
-	BASE_ROTATION,				
-	BASE_LENSCORRECTION1,		
-	BASE_LENSCORRECTION2,		
-	BASE_LENSCORRECTION3,		
+	BASE_HFLIP,
+	BASE_VFLIP,
+	BASE_HKEYSTONE,
+	BASE_VKEYSTONE,
+	BASE_XOFFSET,
+	BASE_YOFFSET,
+	BASE_ROTATION,
+	BASE_LENSCORRECTION1,
+	BASE_LENSCORRECTION2,
+	BASE_LENSCORRECTION3,
 	BASE_LENSBRIGHTNESS,
 } CAMERA_BASE_FEATURE;
 
