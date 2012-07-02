@@ -20,7 +20,24 @@ extern "C" {
 #include <fcntl.h>
 #include <unistd.h>
 #include <sys/ioctl.h>
-#include <linux/videodev.h>
+
+//Recent linux versions dropped support for V4L1, fixing.
+//See http://forum.openframeworks.cc/index.php?topic=5882.0
+#include <linux/videodev2.h>
+
+#define VIDIOCGCAP              _IOR('v',1,struct video_capability)     /* Get capabilities */
+
+struct video_capability {
+         char name[32];
+         int type;
+         int channels;   /* Num channels */
+         int audios;     /* Num audio devices */
+         int maxwidth;   /* Supported width */
+         int maxheight;  /* And height */
+         int minwidth;   /* Supported width */
+         int minheight;  /* And height */
+};
+//End fix
 
 #endif
 
