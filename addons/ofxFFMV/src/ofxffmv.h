@@ -1,5 +1,5 @@
 /* ofxffmv.h
-*  
+*
 *  Created on 12/03/11.
 *  Copyright 2011 NUI Group. All rights reserved.
 *  Author: Anatoly Churikov
@@ -11,8 +11,8 @@
 #include "ofxCameraBase.h"
 #include "pgrflycapture.h"
 #include "pgrcameragui.h"
-#include "ofxXMLSettings.h"
- 
+#include "ofxXmlSettings.h"
+
 class ofxffmv : ofxCameraBase
 {
 public:
