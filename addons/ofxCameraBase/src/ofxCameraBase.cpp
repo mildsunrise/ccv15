@@ -13,63 +13,42 @@ void ofxCameraBase::getCameraSize(unsigned int* cameraWidth,unsigned int* camera
 	*pixelMode = cameraPixelMode;
 }
 
-DWORD WINAPI ofxCameraBase::CaptureThread(LPVOID instance)
-{
-	ofxCameraBase *pThis = (ofxCameraBase*)instance;
-	pThis->Capture();
-	return 0;
-}
-
-void ofxCameraBase::StartThreadingCapture()
-{
-	InitializeCriticalSection(&criticalSection); 
-	isCaptureThreadRunning = true;
-	captureThread = CreateThread(NULL, 0, &ofxCameraBase::CaptureThread, this, 0, 0);
-}
-
-void ofxCameraBase::StopThreadingCapture()
-{
-	isCaptureThreadRunning = false;
-	Sleep(300);
-}
-
-
-void ofxCameraBase::Capture()
-{
-	while (isCaptureThreadRunning)
-	{
-		if (isPaused)
-		{
-			isNewFrame = true;
+void ofxCameraCaptureThread::threadedFunction() {
+	while (threadRunning) {
+		if (isPaused) {
+			parent_.isNewFrame = true;
 			Sleep(30);
-		}
-		else
-		{
-			if ((!isNewFrame) || (newFrameCurrentLifetime>=_MAX_FRAME_LIFETIME_))
-			{
-				isNewFrame = true;
-				newFrameCurrentLifetime = 0;
-				if (!isInitialized)
+		} else {
+			if ((!(parent_.isNewFrame)) || ((parent_.newFrameCurrentLifetime)>=_MAX_FRAME_LIFETIME_)) {
+				parent_.isNewFrame = true;
+				parent_.newFrameCurrentLifetime = 0;
+				if (!(parent_.isInitialized))
 					return;
-				EnterCriticalSection(&criticalSection); 
-				updateCurrentFrame();
-				LeaveCriticalSection(&criticalSection);
-			}
-			else
-				newFrameCurrentLifetime++;
+                lock();
+				parent_.updateCurrentFrame();
+				unlock();
+			} else
+				(parent_.newFrameCurrentLifetime)++;
 			Sleep(1);
 		}
 	}
 }
 
-void ofxCameraBase::getCameraFrame(unsigned char* newFrameData)	
-{ 
-	if (isNewFrame)
-	{
-		EnterCriticalSection(&criticalSection); 
+void ofxCameraBase::StartThreadingCapture() {
+    captureThread.startThread(true, false);
+}
+
+void ofxCameraBase::StopThreadingCapture() {
+	captureThread.waitForThread(true); //Instead of sleeping, we wait for it to end
+}
+
+void ofxCameraBase::getCameraFrame(unsigned char* newFrameData)
+{
+	if (isNewFrame) {
+		captureThread.lock();
 		isNewFrame = false;
 		memcpy((void*)newFrameData,cameraFrame,width*height*sizeof(unsigned char));
-		LeaveCriticalSection(&criticalSection);
+		captureThread.unlock();
 	}
 }
 
@@ -95,12 +74,11 @@ void ofxCameraBase::deinitializeCamera()
 	{
 		saveCameraSettings();
 		StopThreadingCapture();
-		EnterCriticalSection(&criticalSection);
+		//captureThread.lock(); //Not needed since the thread is already stopped
 		cameraDeinitializationLogic();
 		isInitialized = false;
-		LeaveCriticalSection(&criticalSection);
+		//captureThread.unlock();
 		Sleep(100);
-		DeleteCriticalSection(&criticalSection);
 		free(cameraFrame);
 		free(rawCameraFrame);
 		isInitialized = false;
@@ -203,7 +181,7 @@ void ofxCameraBase::updateCurrentFrame()
 									r = ((float)rawCameraFrame[(x+(y-1)*width)*depth] + rawCameraFrame[(x+(y+1)*width)*depth]) * 0.5f;
 								else
 									r = rawCameraFrame[(x+width)*depth];
-								
+
 						}
 						cameraFrame[index] = (unsigned char)r;
 					}
@@ -248,7 +226,7 @@ void ofxCameraBase::updateCurrentFrame()
 					}
 				}
 				break;
-			}	
+			}
 		}
 		else
 		{
@@ -367,7 +345,7 @@ void ofxCameraBase::loadCameraSettings(ofxXmlSettings* xmlSettings)
 			cameraBaseSettings->propertyFirstValue.push_back(0);
 			cameraBaseSettings->propertySecondValue.push_back(settingValue);
 			cameraBaseSettings->propertyType.push_back(BASE_WHITE_BALANCE);
-		}		
+		}
 	}
 	isAutoValue = xmlSettings->getValue("SETTINGS:SENSOR:HUE:AUTO", 1) != 0;
 	settingValue = xmlSettings->getValue("SETTINGS:SENSOR:HUE:VALUE", -0xFFFF);
@@ -739,7 +717,7 @@ void ofxCameraBase::saveCameraSettings()
 					xmlSettings->setValue("SETTINGS:FRAME:TOP", (int)top);
 					xmlSettings->setValue("SETTINGS:SENSOR:MODE", (int)cameraPixelMode);
 					xmlSettings->setValue("SETTINGS:SENSOR:DEPTH", (int)depth);
-					
+
 					for (int j=0;j<cameraBaseSettings->propertyType.size();j++)
 					{
 						switch (cameraBaseSettings->propertyType[j])
@@ -869,7 +847,7 @@ void ofxCameraBase::saveCameraSettings()
 	if (!isLoadedFromXML)
 	{
 		xmlSettings->pushTag("CAMERAS", 0);
-		int numCameraTags = xmlSettings->getNumTags("CAMERA");		
+		int numCameraTags = xmlSettings->getNumTags("CAMERA");
 		xmlSettings->setValue("CAMERA","",numCameraTags);
 		xmlSettings->pushTag("CAMERA", numCameraTags);
 		xmlSettings->setValue("SETTINGS","",0);
@@ -1012,7 +990,7 @@ void ofxCameraBase::saveCameraSettings()
 		xmlSettings->popTag();
 		xmlSettings->popTag();
 		xmlSettings->popTag();
-	}	
+	}
 	xmlSettings->saveFile(fileName);
 	delete xmlSettings;
 	xmlSettings = NULL;

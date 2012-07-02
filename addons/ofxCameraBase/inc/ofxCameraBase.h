@@ -17,13 +17,30 @@
 #include "ofMain.h"
 #include "ofxGUIDHelper.h"
 #include "ofxXmlSettings.h"
+#include "ofxThread.h"
 
-class ofxCameraBase
-{
+//forward declarations
+class ofxCameraBase;
+
+//capturing thread logic
+class ofxCameraCaptureThread: public ofxThread {
+public:
+    ofxCameraCaptureThread(ofxCameraBase& parent): parent_(parent) {
+        isPaused=false;
+    }
+    ~ofxCameraCaptureThread();
+    void threadedFunction();
+    friend class ofxCameraBase;
+private:
+    ofxCameraBase& parent_; //It would be dangerous if this was "protected"
+protected:
+    bool isPaused;
+};
+
+class ofxCameraBase {
 public:
 	//Constructor for CameraBase class
-	ofxCameraBase()
-	{
+	ofxCameraBase() : captureThread(ofxCameraCaptureThread(*this)) { //nasty thing here
 		depth = 1;
 		width = 640;
 		height = 480;
@@ -33,15 +50,12 @@ public:
 		isInitialized = false;
 		index = 0;
 		memset((void*)&guid,0,sizeof(GUID));
-		captureThread = NULL;
-		isCaptureThreadRunning = false;
 		isUsedForTracking = false;
 		isNewFrame = true;
 		newFrameCurrentLifetime = 0;
 		cameraPixelMode = 0;
 		cameraBaseSettings = NULL;
 		rawCameraFrame = NULL;
-		isPaused = false;
 		isRaw = 0;
 	}
 	//Virtual destructor for CameraBase class
@@ -72,11 +86,11 @@ public:
 	//start camera logic
 	void startCamera();
 	//pause camera active capturing when it's not in use
-	void pauseCamera() { isPaused = true; }
+	void pauseCamera() { captureThread.isPaused = true; }
 	//fast resume capturing from camera
-	void resumeCamera() { isPaused = false; }
+	void resumeCamera() { captureThread.isPaused = false; }
 	//check is camera capturing is paused
-	bool isCameraPaused() { return isPaused;}
+	bool isCameraPaused() { return captureThread.isPaused;}
 	//get camera Type
 	CAMERATYPE getBaseCameraType() { return cameraType; }
 	//get camera type name
@@ -96,8 +110,6 @@ public:
 protected:
 	//logic for updating current frame
 	void updateCurrentFrame();
-	//capturing thread logic
-	static DWORD WINAPI CaptureThread(LPVOID instance);
 	//capturing thread start
 	void StartThreadingCapture();
 	//capturing thread stop
@@ -112,13 +124,11 @@ protected:
 	virtual void setCameraType() {}
 	void loadDefaultCameraSettings();
 private:
-	void Capture();
+	ofxCameraCaptureThread captureThread; //It would be dangerous if this was "protected"
 	void receiveSettingsFromCamera();
 	void loadCameraSettings(ofxXmlSettings* xmlSettings);
+	friend class ofxCameraCaptureThread;
 protected:
-	HANDLE captureThread;
-	bool isCaptureThreadRunning;
-	CRITICAL_SECTION criticalSection;
 	GUID guid;
 	std::string cameraTypeName;
 	CAMERATYPE cameraType;
@@ -126,7 +136,7 @@ protected:
 	int isRaw;
 	int index,left,top;
 	unsigned char depth;
-	bool isInitialized,isNewFrame,isUsedForTracking,isPaused;
+	bool isInitialized,isNewFrame,isUsedForTracking;
 	int newFrameCurrentLifetime;
 	unsigned char cameraPixelMode;
 	unsigned char* cameraFrame;
