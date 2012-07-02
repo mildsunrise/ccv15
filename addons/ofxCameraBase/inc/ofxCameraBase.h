@@ -16,7 +16,7 @@
 #include "ofxCameraBaseSettings.h"
 #include "ofMain.h"
 #include "ofxGUIDHelper.h"
-#include "ofxXMLSettings.h"
+#include "ofxXmlSettings.h"
 
 class ofxCameraBase
 {
