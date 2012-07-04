@@ -63,4 +63,19 @@ class ofxThread{
 	bool verbose;
 };
 
+#ifdef TARGET_WIN32
+    #include <Windows.h>
+    #define SLEEP_FIXED(MILLISECONDS) Sleep(MILLISECONDS);
+#else
+    #include <time.h>
+    #define SLEEP_FIXED(MILLISECONDS) {                         \
+        struct timespec SLEEP_FIXED__time,                      \
+                        SLEEP_FIXED__remaining;                 \
+        SLEEP_FIXED__time.tv_sec = (MILLISECONDS / 1000);       \
+        SLEEP_FIXED__time.tv_nsec=                              \
+            (MILLISECONDS - ((MILLISECONDS/1000)*1000))*1000000;\
+        nanosleep(&SLEEP_FIXED__time, &SLEEP_FIXED__remaining); \
+    }
+#endif
+
 #endif

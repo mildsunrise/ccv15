@@ -17,7 +17,7 @@ void ofxCameraCaptureThread::threadedFunction() {
 	while (threadRunning) {
 		if (isPaused) {
 			parent_.isNewFrame = true;
-			Sleep(30);
+			SLEEP_FIXED(30)
 		} else {
 			if ((!(parent_.isNewFrame)) || ((parent_.newFrameCurrentLifetime)>=_MAX_FRAME_LIFETIME_)) {
 				parent_.isNewFrame = true;
@@ -29,7 +29,7 @@ void ofxCameraCaptureThread::threadedFunction() {
 				unlock();
 			} else
 				(parent_.newFrameCurrentLifetime)++;
-			Sleep(1);
+			SLEEP_FIXED(1)
 		}
 	}
 }
@@ -78,7 +78,7 @@ void ofxCameraBase::deinitializeCamera()
 		cameraDeinitializationLogic();
 		isInitialized = false;
 		//captureThread.unlock();
-		Sleep(100);
+		SLEEP_FIXED(100)
 		free(cameraFrame);
 		free(rawCameraFrame);
 		isInitialized = false;
