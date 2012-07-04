@@ -5,10 +5,10 @@
 #include <string>
 #include <vector>
 #include <iostream>
-//#include <conio.h> //FIXME: is conio.h needed? is it windows-specific?
+//#include <conio.h> //FIXME MIGRATION: is conio.h needed? is it windows-specific?
 
 #ifdef TARGET_WIN32
-#include <windows.h> //FIXME: should we #include "Rpc.h" instead?
+#include <windows.h> //FIXME MIGRATION: should we #include "Rpc.h" instead?
 #else
 //Define the GUID type ourselves
 typedef struct _GUID {          // size is 16
