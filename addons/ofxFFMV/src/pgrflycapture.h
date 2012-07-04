@@ -32,14 +32,28 @@
 #ifndef __PGRFLYCAPTURE_H__
 #define __PGRFLYCAPTURE_H__
 
-#ifdef PGRFLYCAPTURE_EXPORTS
-#define PGRFLYCAPTURE_API __declspec( dllexport )
+//FIXME MIGRATION: can this flags just be removed?
+#ifdef TARGET_WIN32
+
+    #ifdef PGRFLYCAPTURE_EXPORTS
+    #define PGRFLYCAPTURE_API __declspec( dllexport )
+    #else
+    #define PGRFLYCAPTURE_API __declspec( dllimport )
+    #endif
+
+    #define PGRFLYCAPTURE_CALL_CONVEN __cdecl
+
 #else
-#define PGRFLYCAPTURE_API __declspec( dllimport )
+
+    #define __cdecl
+    #define __stdcall
+    #define __fastcall
+    #define __declspec
+
+    #define PGRFLYCAPTURE_API
+    #define PGRFLYCAPTURE_CALL_CONVEN
+
 #endif
-
-#define PGRFLYCAPTURE_CALL_CONVEN __cdecl
-
 
 #ifdef __cplusplus
 extern "C"
@@ -470,7 +484,7 @@ typedef enum FlyCaptureColorMethod
    FLYCAPTURE_EDGE_SENSING,
    // Nearest neighbor de-mosaicing.  This algorithm is significantly
    // faster than edge sensing, at the cost of accuracy.
-   // Please note The Nearest Neighbor method has been remapped internally to 
+   // Please note The Nearest Neighbor method has been remapped internally to
    // Nearest Neighbor Fast due to observed artifacts with the original method.
    FLYCAPTURE_NEAREST_NEIGHBOR,
    // Faster, less accurate nearest neighbor de-mosaicing.
@@ -479,7 +493,7 @@ typedef enum FlyCaptureColorMethod
    // reproduction.  This method is so processor intensive that it
    // might not keep up with the camera's frame rate.  Best used for
    // offline processing where accurate color reproduction is required.
-   FLYCAPTURE_RIGOROUS,   
+   FLYCAPTURE_RIGOROUS,
    // High quality linear interpolation. This algorithm provides similar
    // results to Rigorous, but is up to 30 times faster.
    FLYCAPTURE_HQLINEAR,
@@ -640,9 +654,9 @@ typedef struct FlyCaptureImage
    // The pixel format of this image.
    FlyCapturePixelFormat pixelFormat;
 
-   // This field is always 1 for single lens cameras.  This field is 
-   // used to indicate the number of images contained in the structure 
-   // when dealing with multi-imager systems such as the Bumblebee2 
+   // This field is always 1 for single lens cameras.  This field is
+   // used to indicate the number of images contained in the structure
+   // when dealing with multi-imager systems such as the Bumblebee2
    // or XB3’
    int iNumImages;
 
@@ -1396,9 +1410,9 @@ flycaptureStop(
 //
 // Description:
 //   This function allows the user to set the timeout value for
-//   flycaptureGrabImage*(), flycaptureLockLatest() and flycaptureLockNext().  
-//   This is not normally necessary but can be useful in specific applications.  
-//   For example, setting uiTimeout to be 0 will result in non-blocking 
+//   flycaptureGrabImage*(), flycaptureLockLatest() and flycaptureLockNext().
+//   This is not normally necessary but can be useful in specific applications.
+//   For example, setting uiTimeout to be 0 will result in non-blocking
 //   grab call.
 //
 // Arguments:
@@ -2422,7 +2436,7 @@ flycaptureGetTrigger(
 //   bOnOff       - Turn the trigger on or off.
 //   iPolarity    - The polarity of the trigger. 1 or 0.
 //   iSource      - The new trigger source.  Corresponds to the source mask.
-//   iMode        - The new trigger mode.  
+//   iMode        - The new trigger mode.
 //   iParameter   - The (optional) parameter to the trigger function, required by some trigger modes. For more information, see http://www.ptgrey.com/support/kb/index.asp?a=4&q=239.
 //
 // Returns:
@@ -2456,7 +2470,7 @@ flycaptureSetTrigger(
 //   bOnOff       - Turn the trigger on or off.
 //   iPolarity    - The polarity of the trigger. 1 or 0.
 //   iSource      - The new trigger source.  Corresponds to the source mask.
-//   iMode        - The new trigger mode.  
+//   iMode        - The new trigger mode.
 //   iParameter   - The (optional) parameter to the trigger function, if required.
 //
 // Returns:

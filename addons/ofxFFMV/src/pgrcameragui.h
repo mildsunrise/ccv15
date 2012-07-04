@@ -1,12 +1,12 @@
 //=============================================================================
 // Copyright © 2004 Point Grey Research, Inc. All Rights Reserved.
-// 
+//
 // This software is the confidential and proprietary information of Point
 // Grey Research, Inc. ("Confidential Information").  You shall not
 // disclose such Confidential Information and shall use it only in
 // accordance with the terms of the license agreement you entered into
 // with Point Grey Research, Inc. (PGR).
-// 
+//
 // PGR MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF THE
 // SOFTWARE, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE
 // IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
@@ -30,7 +30,7 @@
 //
 //  This header file defines the API for all three of the "GUI" .DLLs  The
 //  behaviour of the settings dialog is defined by the lib .DLL stub that is
-//  linked to.  PGRFlyCaptureGUI.LIB will load PGRFlyCaptureGUI.DLL, 
+//  linked to.  PGRFlyCaptureGUI.LIB will load PGRFlyCaptureGUI.DLL,
 //  DigiclopsGUI.LIB will load DigiclopsGUI.DLL and LadybugGUI.LIB will load
 //  LadybugGUI.DLL.  PGRCameraGUI.LIB and PGRCameraGUI.DLL are no longer
 //  distributed.  Please link to the appropriate SDK-specific .LIB file (and
@@ -38,18 +38,23 @@
 //
 //=============================================================================
 
-
-#ifdef PGRCAMERAGUI_EXPORTS
-#define PGRCAMERAGUI_API __declspec( dllexport )
+#ifdef TARGET_WIN32
+    #ifdef PGRCAMERAGUI_EXPORTS
+    #define PGRCAMERAGUI_API __declspec( dllexport )
+    #else
+    #define PGRCAMERAGUI_API __declspec( dllimport )
+    #endif
 #else
-#define PGRCAMERAGUI_API __declspec( dllimport )
+    #define PGRCAMERAGUI_API
+    typedef bool BOOL;
 #endif
+
 
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-   
+
 //=============================================================================
 // Definitions and Enumerations
 //=============================================================================
@@ -75,30 +80,30 @@ typedef void*  GenericCameraContext;
 typedef enum CameraGUIError
 {
    // Function completed successfully.
-   PGRCAMGUI_OK,                      
+   PGRCAMGUI_OK,
    // Function failed.
-   PGRCAMGUI_FAILED,                  
+   PGRCAMGUI_FAILED,
    // Was unable to create dialog.
-   PGRCAMGUI_COULD_NOT_CREATE_DIALOG,         
+   PGRCAMGUI_COULD_NOT_CREATE_DIALOG,
    // An invalid argument was passed.
-   PGRCAMGUI_INVALID_ARGUMENT,                
+   PGRCAMGUI_INVALID_ARGUMENT,
    // An invalid context was passed.
-   PGRCAMGUI_INVALID_CONTEXT,       
+   PGRCAMGUI_INVALID_CONTEXT,
    // Memory allocation error.
-   PGRCAMGUI_MEMORY_ALLOCATION_ERROR,         
+   PGRCAMGUI_MEMORY_ALLOCATION_ERROR,
    // There has been an internal camera error - call getLastError()
-   PGRCAMGUI_INTERNAL_CAMERA_ERROR,	   
-      
+   PGRCAMGUI_INTERNAL_CAMERA_ERROR,
+
 } CameraGUIError;
 
 
 //
 // Description:
-//   Type of PGRCameraGUI settings dialog to display.  
+//   Type of PGRCameraGUI settings dialog to display.
 //
 // Remarks:
-//   This enum will be deprecated in the next version.  Please use the 
-//   SDK-specific .LIB and .DLL (see note above) and the new 
+//   This enum will be deprecated in the next version.  Please use the
+//   SDK-specific .LIB and .DLL (see note above) and the new
 //   pgrcamguiInitializeSettingsDialog() instead of pgrcamguiCreateSettingsDialog().
 //
 typedef enum CameraGUIType
@@ -120,18 +125,18 @@ typedef enum CameraGUIType
 //-----------------------------------------------------------------------------
 //
 // Name: pgrcamguiCreateContext()
-//    
+//
 // Description:
 //    Allocates a PGRCameraGUI handle to be used in all successive calls.
 //    This function must be called before any other functions.
 //
 // Arguments:
 //    pcontext - a pointer to a PGRCameraGUI context to be created.
-//          
+//
 // Returns:
 //    PGRCAMGUI_OK - upon successful completion.
-//    
-PGRCAMERAGUI_API CameraGUIError 
+//
+PGRCAMERAGUI_API CameraGUIError
 pgrcamguiCreateContext(
 		       CameraGUIContext* pcontext );
 
@@ -139,7 +144,7 @@ pgrcamguiCreateContext(
 //-----------------------------------------------------------------------------
 //
 // Name: pgrcamguiDestroyContext()
-//    
+//
 // Description:
 //    Frees memory associated with a given context.
 //
@@ -149,8 +154,8 @@ pgrcamguiCreateContext(
 // Returns:
 //    PGRCAMGUI_OK - upon successful completion.
 //    PGRCAMGUI_INVALID_CONTEXT - if context is null.
-//    
-PGRCAMERAGUI_API CameraGUIError 
+//
+PGRCAMERAGUI_API CameraGUIError
 pgrcamguiDestroyContext(
 			CameraGUIContext context );
 
@@ -158,7 +163,7 @@ pgrcamguiDestroyContext(
 //-----------------------------------------------------------------------------
 //
 // Name: pgrcamguiShowCameraSelectionModal()
-//    
+//
 // Description:
 //    Displays the camera selection dialog.
 //
@@ -175,8 +180,8 @@ pgrcamguiDestroyContext(
 //    PGRCAMGUI_OK - upon successful completion.
 //    PGRCAMGUI_FAILED - if the function failed.
 //    PGRCAMGUI_INVALID_CONTEXT - if context is NULL.
-//    
-PGRCAMERAGUI_API CameraGUIError 
+//
+PGRCAMERAGUI_API CameraGUIError
 pgrcamguiShowCameraSelectionModal(
 				  CameraGUIContext       context,
 				  GenericCameraContext   camcontext,
@@ -186,17 +191,17 @@ pgrcamguiShowCameraSelectionModal(
 //-----------------------------------------------------------------------------
 //
 // Name: pgrcamguiCreateSettingsDialog()
-//    
+//
 // Description:
-//   This function is DEPRECATED.  Please use 
+//   This function is DEPRECATED.  Please use
 //   pgrcamguiInitializeSettingsDialog()
 //
 // Returns:
 //    PGRCAMGUI_OK - upon successful completion.
 //    PGRCAMGUI_FAILED - if the function failed.
 //    PGRCAMGUI_INVALID_CONTEXT - if context is NULL.
-//    
-PGRCAMERAGUI_API CameraGUIError 
+//
+PGRCAMERAGUI_API CameraGUIError
 pgrcamguiCreateSettingsDialog(
 			      CameraGUIContext	   context,
 			      CameraGUIType	   type,
@@ -206,7 +211,7 @@ pgrcamguiCreateSettingsDialog(
 //-----------------------------------------------------------------------------
 //
 // Name: pgrcamguiInitializeSettingsDialog()
-//    
+//
 // Description:
 //    Creates the settings dialog.  Call this before calling the either of the
 //    other two functions dealing with the Settings dialog.
@@ -219,8 +224,8 @@ pgrcamguiCreateSettingsDialog(
 //    PGRCAMGUI_OK - upon successful completion.
 //    PGRCAMGUI_FAILED - if the function failed.
 //    PGRCAMGUI_INVALID_CONTEXT - if context is null.
-//    
-PGRCAMERAGUI_API CameraGUIError 
+//
+PGRCAMERAGUI_API CameraGUIError
 pgrcamguiInitializeSettingsDialog(
                                   CameraGUIContext       context,
                                   GenericCameraContext   camcontext );
@@ -229,7 +234,7 @@ pgrcamguiInitializeSettingsDialog(
 //-----------------------------------------------------------------------------
 //
 // Name: pgrcamguiToggleSettingsWindowState()
-//    
+//
 // Description:
 //    Displays or hides the modeless settings dialog.
 //
@@ -241,9 +246,9 @@ pgrcamguiInitializeSettingsDialog(
 //    PGRCAMGUI_OK - upon successful completion.
 //    PGRCAMGUI_FAILED - if the function failed.
 //    PGRCAMGUI_INVALID_CONTEXT - if context is null.
-//    
-PGRCAMERAGUI_API CameraGUIError 
-pgrcamguiToggleSettingsWindowState(  
+//
+PGRCAMERAGUI_API CameraGUIError
+pgrcamguiToggleSettingsWindowState(
 				   CameraGUIContext   context,
 				   HWND		      hwndParent );
 
@@ -251,7 +256,7 @@ pgrcamguiToggleSettingsWindowState(
 //-----------------------------------------------------------------------------
 //
 // Name: pgrcamguiGetSettingsWindowState()
-//    
+//
 // Description:
 //    Retrieves the state of the settings dialog.
 //
@@ -263,8 +268,8 @@ pgrcamguiToggleSettingsWindowState(
 //    PGRCAMGUI_OK - upon successful completion.
 //    PGRCAMGUI_FAILED - if the function failed.
 //    PGRCAMGUI_INVALID_CONTEXT - if context is null.
-//    
-PGRCAMERAGUI_API CameraGUIError 
+//
+PGRCAMERAGUI_API CameraGUIError
 pgrcamguiGetSettingsWindowState(
 				CameraGUIContext   context,
 				BOOL*		   pbShowing );
@@ -273,9 +278,9 @@ pgrcamguiGetSettingsWindowState(
 //-----------------------------------------------------------------------------
 //
 // Name: pgrcamguiSetSettingsWindowHelpPrefix()
-//    
+//
 // Description:
-//    Enables context sensitive help in the settings dialog by specifying the 
+//    Enables context sensitive help in the settings dialog by specifying the
 //    help prefix to append topic specific pages to. eg:
 //    "..\\doc\\FlyCapture SDK help.chm::/FlyCap Demo Program/Camera Control Dialog"
 //    to which strings like "/Look Up Table.html" will be appended.
@@ -289,7 +294,7 @@ pgrcamguiGetSettingsWindowState(
 //    PGRCAMGUI_OK - upon successful completion.
 //    PGRCAMGUI_FAILED - if the function failed.
 //    PGRCAMGUI_INVALID_CONTEXT - if context is null.
-//    
+//
 PGRCAMERAGUI_API CameraGUIError
 pgrcamguiSetSettingsWindowHelpPrefix(
                                      CameraGUIContext context,
@@ -299,7 +304,7 @@ pgrcamguiSetSettingsWindowHelpPrefix(
 //-----------------------------------------------------------------------------
 //
 // Name: pgrcamguiShowInfoDlg()
-//    
+//
 // Description:
 //    Displays a modal dialog that displays PGR version information.
 //
@@ -312,8 +317,8 @@ pgrcamguiSetSettingsWindowHelpPrefix(
 //
 // Returns:
 //    PGRCAMGUI_OK - upon successful completion.
-//    
-PGRCAMERAGUI_API CameraGUIError 
+//
+PGRCAMERAGUI_API CameraGUIError
 pgrcamguiShowInfoDlg(
                      CameraGUIContext      context,
                      GenericCameraContext  camcontext,
