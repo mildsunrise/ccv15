@@ -88,7 +88,7 @@ class ofxXmlSettings{
 		//use pushTag and popTag to get number of tags whithin other tags
 		// both getNumTags("PT"); and getNumTags("PT:X"); will just return the
 		//number of <PT> tags at the current root level.
-		int		getNumTags(const string& tag);
+		unsigned int		getNumTags(const string& tag);
 
 		//-- addValue/addTag
 		//adds a tag to the document even if a tag with the same name
@@ -104,40 +104,40 @@ class ofxXmlSettings{
 
 		int		addTag(const string& tag); //adds an empty tag at the current level
 
-    
+
         // Attribute-related methods
 		int		addAttribute(const string& tag, const string& attribute, int value, int which = 0);
 		int		addAttribute(const string& tag, const string& attribute, double value, int which = 0);
 		int		addAttribute(const string& tag, const string& attribute, const string& value, int which = 0);
-		
+
 		int		addAttribute(const string& tag, const string& attribute, int value);
 		int		addAttribute(const string& tag, const string& attribute, double value);
 		int		addAttribute(const string& tag, const string& attribute, const string& value);
-		
+
 		void	removeAttribute(const string& tag, const string& attribute, int which = 0);
 		void	clearTagAttributes(const string& tag, int which = 0);
-		
+
 		int		getNumAttributes(const string& tag, int which = 0);
-		
+
 		bool	attributeExists(const string& tag, const string& attribute, int which = 0);
-		
+
 		bool    getAttributeNames(const string& tag, vector<string>& outNames, int which = 0);
-		
+
 		int		getAttribute(const string& tag, const string& attribute, int defaultValue, int which = 0);
 		double	getAttribute(const string& tag, const string& attribute, double defaultValue, int which = 0);
 		string	getAttribute(const string& tag, const string& attribute, const string& defaultValue, int which = 0);
-		
+
 		int		setAttribute(const string& tag, const string& attribute, int value, int which = 0);
 		int		setAttribute(const string& tag, const string& attribute, double value, int which = 0);
 		int		setAttribute(const string& tag, const string& attribute, const string& value, int which = 0);
-		
+
 		int		setAttribute(const string& tag, const string& attribute, int value);
 		int		setAttribute(const string& tag, const string& attribute, double value);
 		int		setAttribute(const string& tag, const string& attribute, const string& value);
 
 		void	loadFromBuffer( string buffer );
 		void	copyXmlToString(string & str);
-	
+
 		TiXmlDocument 	doc;
 		bool 			bDocLoaded;
 
@@ -146,11 +146,11 @@ class ofxXmlSettings{
 		TiXmlHandle     storedHandle;
 		int             level;
 
-    
+
 		int 	writeTag(const string&  tag, const string& valueString, int which = 0);
 		bool 	readTag(const string&  tag, TiXmlHandle& valHandle, int which = 0);	// max 1024 chars...
 
-    
+
 		int		writeAttribute(const string& tag, const string& attribute, const string& valueString, int which = 0);
 
         TiXmlElement* getElementForAttribute(const string& tag, int which);
