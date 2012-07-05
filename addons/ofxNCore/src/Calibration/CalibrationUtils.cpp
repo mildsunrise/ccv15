@@ -108,11 +108,11 @@ void CalibrationUtils::setCalibrationCameraIndex(unsigned int cameraIndex)
 		{
 			int x = i % screenWidth;
 			x/=blockWidthSize;
-			if (x >= cameraGridWidth)
+			if (x >= (float)cameraGridWidth)
 				x = cameraGridWidth - 1;
 			int y = i / screenWidth;
 			y/=blockHeightSize;
-			if (y >= cameraGridHeight)
+			if (y >= (float)cameraGridHeight)
 				y = cameraGridHeight - 1;
 			int index = y * cameraGridWidth + x;
 			cameraMap[0][i]=(unsigned char)index;
