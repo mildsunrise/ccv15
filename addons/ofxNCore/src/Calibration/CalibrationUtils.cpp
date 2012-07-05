@@ -45,13 +45,13 @@ void CalibrationUtils::setCalibrationProperties(unsigned int stitchedFrameWidth,
 	this->isInterleaveMode = isInterleaveMode;
 	if (screenPoints != NULL)
 		free(screenPoints);
-	screenPoints = (vector2df*)malloc(GRID_POINTS * sizeof(vector2df));
+	screenPoints = (ofxVec2f*)malloc(GRID_POINTS * sizeof(ofxVec2f));
 	if (cameraPoints != NULL)
 		free(cameraPoints);
-	cameraPoints = (vector2df*)malloc(GRID_POINTS*sizeof(vector2df));
+	cameraPoints = (ofxVec2f*)malloc(GRID_POINTS*sizeof(ofxVec2f));
 	if (drawingPoints != NULL)
 		free(drawingPoints);
-	drawingPoints = (vector2df*)malloc(GRID_POINTS*sizeof(vector2df));
+	drawingPoints = (ofxVec2f*)malloc(GRID_POINTS*sizeof(ofxVec2f));
 	setCalibrationCameraIndex(0);
 }
 
@@ -135,13 +135,13 @@ void CalibrationUtils::setCalibrationCameraIndex(unsigned int cameraIndex)
 
 	int globalCalibrationGridWidth = (isInterleaveMode ?  GRID_X * cameraGridWidth - cameraGridWidth + 1 : GRID_X * cameraGridWidth);
 	int globalCalibrationGridHeight = (isInterleaveMode ? GRID_Y * cameraGridHeight - cameraGridHeight + 1 : GRID_Y * cameraGridHeight);
-	
+
 	float calibrationGridCellWidth = ((float)screenWidth) / globalCalibrationGridWidth;
 	float calibrationGridCellHeight = ((float)screenHeight) / globalCalibrationGridHeight;
 
 	int cameraX = cameraIndex % cameraGridWidth;
 	int cameraY = cameraIndex / cameraGridWidth;
-				
+
 	cameraX *= (isInterleaveMode  ? (GRID_X-1) : GRID_X);
 	cameraY *= (isInterleaveMode  ? (GRID_Y-1) : GRID_Y);
 
@@ -150,10 +150,10 @@ void CalibrationUtils::setCalibrationCameraIndex(unsigned int cameraIndex)
 	{
 		for (int i=0;i<=GRID_X;i++)
 		{
-			drawingPoints[P].X = (float)(calibrationGridCellWidth * i + LeftX)/screenWidth;
-			drawingPoints[P].Y = (float)(calibrationGridCellHeight * j + TopY)/screenHeight;
-			screenPoints[P].X = (float)(calibrationGridCellWidth * i + LeftX);
-			screenPoints[P].Y = (float)(calibrationGridCellHeight * j + TopY);
+			drawingPoints[P].x = (float)(calibrationGridCellWidth * i + LeftX)/screenWidth;
+			drawingPoints[P].y = (float)(calibrationGridCellHeight * j + TopY)/screenHeight;
+			screenPoints[P].x = (float)(calibrationGridCellWidth * i + LeftX);
+			screenPoints[P].y = (float)(calibrationGridCellHeight * j + TopY);
 			P++;
 		}
 	}
@@ -170,7 +170,7 @@ void CalibrationUtils::initCameraPoints()
 	{
 		for(int i = 0; i <= GRID_X; i++)
 		{
-			cameraPoints[p] = vector2df((i) / (float)GRID_X, (j) / (float)GRID_Y);
+			cameraPoints[p] = ofxVec2f((i) / (float)GRID_X, (j) / (float)GRID_Y);
 			p++;
 		}
 	}
@@ -253,13 +253,13 @@ void CalibrationUtils::initScreenPoints(int cameraPosition)
 
 	int globalCalibrationGridWidth = (isInterleaveMode ?  GRID_X * cameraGridWidth - cameraGridWidth + 1 : GRID_X * cameraGridWidth);
 	int globalCalibrationGridHeight = (isInterleaveMode ? GRID_Y * cameraGridHeight - cameraGridHeight + 1 : GRID_Y * cameraGridHeight);
-	
+
 	float calibrationGridCellWidth = ((float)screenWidth) / globalCalibrationGridWidth;
 	float calibrationGridCellHeight = ((float)screenHeight) / globalCalibrationGridHeight;
 
 	int cameraX = cameraPosition % cameraGridWidth;
 	int cameraY = cameraPosition / cameraGridWidth;
-				
+
 	cameraX *= (isInterleaveMode  ? (GRID_X-1) : GRID_X);
 	cameraY *= (isInterleaveMode  ? (GRID_Y-1) : GRID_Y);
 
@@ -268,8 +268,8 @@ void CalibrationUtils::initScreenPoints(int cameraPosition)
 	{
 		for (int i=0;i<=GRID_X;i++)
 		{
-			screenPoints[P].X = (float)(calibrationGridCellWidth * i + LeftX);
-			screenPoints[P].Y = (float)(calibrationGridCellHeight * j + TopY);
+			screenPoints[P].x = (float)(calibrationGridCellWidth * i + LeftX);
+			screenPoints[P].y = (float)(calibrationGridCellHeight * j + TopY);
 			P++;
 		}
 	}
@@ -300,7 +300,7 @@ void CalibrationUtils::nextCalibrationStep()
 	if(bCalibrating)
 	{
 		calibrationStep++;
-		if (calibrationStep >= GRID_POINTS) 
+		if (calibrationStep >= GRID_POINTS)
 		{
 			bNextCamera = true;
 			calibrationStep = 0;

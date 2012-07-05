@@ -1,6 +1,6 @@
 /*
 *  Calibration.cpp
-*  
+*
 *
 *  Created on 2/1/09.
 *  Copyright 2009 NUI Group. All rights reserved.
@@ -40,7 +40,7 @@ void Calibration::setup(unsigned int stitchedFrameWidth,unsigned int stitchedFra
     //Fonts - Is there a way to dynamically change font size?
 	verdana.loadFont("fonts/verdana.ttf", 8, true, true);	   //Font used for small images
 	calibrationText.loadFont("fonts/verdana.ttf", 10, true, true);
-	
+
 	calibrate.setCalibrationProperties(stitchedFrameWidth,stitchedFrameHeight,cameraGridWidth,cameraGridHeight,calibrationGridWidth,calibrationGridHeight,isInterleaveMode);
 
 	printf("Calibration is setup!\n\n");
@@ -51,13 +51,13 @@ void Calibration::SetTracker(BlobTracker *trackerIn)
 	 tracker = trackerIn;
 }
 
-void Calibration::passInContourFinder(int numBlobs, vector<Blob> blobs) 
+void Calibration::passInContourFinder(int numBlobs, vector<Blob> blobs)
 {
     contourFinder.nBlobs = numBlobs;
 	contourFinder.blobs  = blobs;
 }
 
-void Calibration::passInTracker(BlobTracker *trackerIn) 
+void Calibration::passInTracker(BlobTracker *trackerIn)
 {
 	tracker = trackerIn;
 }
@@ -96,7 +96,7 @@ void Calibration::doCalibration()
 
 void Calibration::drawCalibrationPointsAndBox()
 {
-	
+
     //this all has to do with getting the angle for loading circle
     arcAngle = 0;
 	std::map<int, Blob> trackedBlobs;
@@ -108,8 +108,8 @@ void Calibration::drawCalibrationPointsAndBox()
     }//end loading circle angle
 
     //Get the screen points so we can make a grid
-//	vector2df *screenpts = calibrate.getScreenPoints();
-	vector2df *screenpts = calibrate.drawingPoints;
+//	ofxVec2f *screenpts = calibrate.getScreenPoints();
+	ofxVec2f *screenpts = calibrate.drawingPoints;
 
 	int i;
 	//For each grid point
@@ -119,7 +119,7 @@ void Calibration::drawCalibrationPointsAndBox()
 		if(calibrate.calibrationStep == i && calibrate.bCalibrating)
 		{
 			glPushMatrix();
-			glTranslatef(screenpts[i].X * ofGetWidth(), screenpts[i].Y * ofGetHeight(), 0.0f);
+			glTranslatef(screenpts[i].x * ofGetWidth(), screenpts[i].y * ofGetHeight(), 0.0f);
 
 			ofFill();
 			//draw red target circle
@@ -134,25 +134,25 @@ void Calibration::drawCalibrationPointsAndBox()
 			glPopMatrix();
         }
 		ofSetColor(0x00FF00); //Make Plus Sign
-		ofRect(screenpts[i].X * ofGetWidth() - 2, screenpts[i].Y * ofGetHeight() - 10, 4, 20); //Horizontal Plus
-		ofRect(screenpts[i].X * ofGetWidth() - 10, screenpts[i].Y * ofGetHeight() - 2, 20, 4); //Vertical Plus
+		ofRect(screenpts[i].x * ofGetWidth() - 2, screenpts[i].y * ofGetHeight() - 10, 4, 20); //Horizontal Plus
+		ofRect(screenpts[i].x * ofGetWidth() - 10, screenpts[i].y * ofGetHeight() - 2, 20, 4); //Vertical Plus
 	}
 	//Draw Bounding Box
 	ofSetColor(0xFFFFFF);
 	ofNoFill();
 	ofRect(0, 0,ofGetWidth(), ofGetHeight());
-	
+
 }
 
 void Calibration::drawCalibrationBlobs()
 {
-	
+
 	//find blobs
 	std::map<int, Blob> trackedBlobs;
 	std::map<int, Blob>::iterator iter;
     trackedBlobs = tracker->getTrackedBlobs(); //get blobs from tracker
 	for(iter=trackedBlobs.begin(); iter!=trackedBlobs.end(); iter++)
-    {		
+    {
         Blob drawBlob;
         drawBlob = iter->second;
         //transform height/width to calibrated space
@@ -163,9 +163,9 @@ void Calibration::drawCalibrationBlobs()
         ofImage tempCalibrationParticle;
         tempCalibrationParticle.clone(calibrationParticle);
         ofSetColor(drawBlob.color);
-        tempCalibrationParticle.draw(drawBlob.centroid.x * ofGetWidth() - drawBlob.boundingRect.width * .5, 
+        tempCalibrationParticle.draw(drawBlob.centroid.x * ofGetWidth() - drawBlob.boundingRect.width * .5,
 									 drawBlob.centroid.y * ofGetHeight() - drawBlob.boundingRect.height * .5,
-									 drawBlob.boundingRect.width, 
+									 drawBlob.boundingRect.width,
 									 drawBlob.boundingRect.height);
         ofDisableAlphaBlending();
 
@@ -185,7 +185,7 @@ void Calibration::drawCalibrationBlobs()
         //set line width back to normal
         glLineWidth(1);
     }
-	
+
 }
 
 /*****************************************************************************
@@ -195,7 +195,7 @@ void Calibration::RAWTouchUp( Blob b)
 {
 	if(calibrate.bCalibrating)//If Calibrating, register the calibration point on blobOff
 	{
-		if(calibrate.bGoToNextStep) 
+		if(calibrate.bGoToNextStep)
 		{
 			calibrate.nextCalibrationStep();
 			calibrate.bGoToNextStep = false;
@@ -214,19 +214,19 @@ void Calibration::RAWTouchUp( Blob b)
 }
 
 void Calibration::RAWTouchHeld( Blob b) {
-		
-	
+
+
 	if(calibrate.bCalibrating)//If Calibrating, register the calibration point on blobOff
 	{
 
 //		calibrationText.drawString(reportStr, ofGetWidth()/2 - calibrationText.stringWidth(reportStr)/2, ofGetHeight()/2 - calibrationText.stringHeight(reportStr)/2);
 
-		float leftX = calibrate.drawingPoints[0].X * calibrate.screenWidth;
-		float topY = calibrate.drawingPoints[0].Y * calibrate.screenHeight;
-		float width = calibrate.drawingPoints[(calibrate.GRID_X+1)*(calibrate.GRID_Y+1)-1].X*calibrate.screenWidth - leftX;
-		float height = calibrate.drawingPoints[(calibrate.GRID_X+1)*(calibrate.GRID_Y+1)-1].Y*calibrate.screenHeight - topY;
-		
-		calibrate.cameraPoints[calibrate.calibrationStep] = vector2df(((b.centroid.x-leftX)/width),((b.centroid.y-topY)/height));
+		float leftX = calibrate.drawingPoints[0].x * calibrate.screenWidth;
+		float topY = calibrate.drawingPoints[0].y * calibrate.screenHeight;
+		float width = calibrate.drawingPoints[(calibrate.GRID_X+1)*(calibrate.GRID_Y+1)-1].x*calibrate.screenWidth - leftX;
+		float height = calibrate.drawingPoints[(calibrate.GRID_X+1)*(calibrate.GRID_Y+1)-1].y*calibrate.screenHeight - topY;
+
+		calibrate.cameraPoints[calibrate.calibrationStep] = ofxVec2f(((b.centroid.x-leftX)/width),((b.centroid.y-topY)/height));
 
 		calibrate.bGoToNextStep = true;
 		targetColor = 0xFFFFFF;
@@ -289,12 +289,12 @@ void Calibration::_keyPressed(ofKeyEventArgs &e) {
                  * Keys for Calibration
                  ***********************/
             case 'c':
-                if(calibrate.bCalibrating) 
+                if(calibrate.bCalibrating)
 				{
                     calibrate.bCalibrating = false;
                     printf("Calibration Stoped\n");
-				} 
-				else 
+				}
+				else
 				{
 					calibrate.beginCalibration();
                     printf("Calibration Started\n");
