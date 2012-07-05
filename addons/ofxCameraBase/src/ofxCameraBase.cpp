@@ -643,7 +643,7 @@ void ofxCameraBase::loadDefaultCameraSettings()
 
 void ofxCameraBase::receiveSettingsFromCamera()
 {
-	int featuresCount = 0;
+	unsigned int featuresCount = 0;
 	if (cameraBaseSettings == NULL)
 	{
 		cameraBaseSettings = new ofxCameraBaseSettings();
@@ -658,7 +658,7 @@ void ofxCameraBase::receiveSettingsFromCamera()
 	int firstValue,secondValue;
 	bool isAuto,isEnabled;
 	int maxValue,minValue;
-	for (int i=0;i<featuresCount;i++)
+	for (unsigned int i=0;i<featuresCount;i++)
 	{
 		getCameraFeature(supportedFeatures[i],&firstValue,&secondValue,&isAuto,&isEnabled,&minValue,&maxValue);
 		bool isNewFeature = true;
@@ -697,8 +697,8 @@ void ofxCameraBase::saveCameraSettings()
 	if (xmlSettings->loadFile(fileName))
 	{
 		xmlSettings->pushTag("CAMERAS", 0);
-		int numCameraTags = xmlSettings->getNumTags("CAMERA");
-		for (int i=0;i<numCameraTags;i++)
+		unsigned int numCameraTags = xmlSettings->getNumTags("CAMERA");
+		for (unsigned int i=0;i<numCameraTags;i++)
 		{
 			xmlSettings->pushTag("CAMERA", i);
 			std::string xmlCameraType = xmlSettings->getValue("SETTINGS:TYPE","NONE");
@@ -847,7 +847,7 @@ void ofxCameraBase::saveCameraSettings()
 	if (!isLoadedFromXML)
 	{
 		xmlSettings->pushTag("CAMERAS", 0);
-		int numCameraTags = xmlSettings->getNumTags("CAMERA");
+		unsigned int numCameraTags = xmlSettings->getNumTags("CAMERA");
 		xmlSettings->setValue("CAMERA","",numCameraTags);
 		xmlSettings->pushTag("CAMERA", numCameraTags);
 		xmlSettings->setValue("SETTINGS","",0);

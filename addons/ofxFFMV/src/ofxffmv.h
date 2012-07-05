@@ -9,8 +9,8 @@
 #define OFXFFMV_H_INCLUDED
 
 #include "ofxCameraBase.h"
-#include "pgrflycapture.h"
-#include "pgrcameragui.h"
+#include "FlyCapture2GUI.h"
+#include "FlyCapture2.h"
 #include "ofxXmlSettings.h"
 
 class ofxffmv : ofxCameraBase
@@ -18,11 +18,11 @@ class ofxffmv : ofxCameraBase
 public:
     ofxffmv();
 	~ofxffmv();
-	void setCameraFeature(CAMERA_BASE_FEATURE featureCode,int firstValue,int secondValue,bool isAuto,bool isEnabled);
-	void getCameraFeature(CAMERA_BASE_FEATURE featureCode,int* firstValue,int* secondValue, bool* isAuto, bool* isEnabled,int* minValue,int* maxValue);
-	int getCameraBaseCount();
-	GUID* getBaseCameraGuids(int* camCount);
-	CAMERA_BASE_FEATURE* getSupportedFeatures(int* featuresCount);
+	void setCameraFeature(CAMERA_BASE_FEATURE featureCode, int firstValue, int secondValue,bool isAuto,bool onOff);
+	void getCameraFeature(CAMERA_BASE_FEATURE featureCode, int* firstValue, int* secondValue, bool* isAuto, bool* onOff, int* minValue, int* maxValue);
+	unsigned int getCameraBaseCount();
+	GUID* getBaseCameraGuids(unsigned int* camCount);
+	CAMERA_BASE_FEATURE* getSupportedFeatures(unsigned int* featuresCount);
 	void callSettingsDialog();
 protected:
 	void getNewFrame(unsigned char* newFrame);
@@ -30,9 +30,13 @@ protected:
 	void cameraDeinitializationLogic();
 	void setCameraType();
 private:
-    FlyCaptureImage fcImage;
-	FlyCaptureContext cameraContext;
-    FlyCaptureInfoEx  arInfo;
-	CameraGUIContext guiContext;
+    FlyCapture2::Image image;
+	FlyCapture2::Camera camera;
+    FlyCapture2::CameraInfo  info;
+    FlyCapture2::CameraControlDlg settingsDlg;
 };
+
+void ofxToPgrGuid(const GUID& origin, FlyCapture2::PGRGuid& dest);
+void ofxFromPgrGuid(const FlyCapture2::PGRGuid& origin, GUID& dest);
+
 #endif // OFXFFMV_H_INCLUDED

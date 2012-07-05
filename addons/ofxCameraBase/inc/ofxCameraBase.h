@@ -66,17 +66,17 @@ public:
 	//Deinitialization of CameraBase class
 	void deinitializeCamera();
 	//setting base feature to CameraBase class
-	virtual void setCameraFeature(CAMERA_BASE_FEATURE featureCode,int firstValue,int secondValue,bool isAuto,bool isEnabled){}
+	virtual void setCameraFeature(CAMERA_BASE_FEATURE featureCode,int firstValue, int secondValue,bool isAuto,bool isEnabled){}
 	//get current value of feature with min and max value
-	virtual void getCameraFeature(CAMERA_BASE_FEATURE featureCode,int* firstValue,int* secondValue, bool* isAuto, bool* isEnabled,int* minValue,int* maxValue) {}
+	virtual void getCameraFeature(CAMERA_BASE_FEATURE featureCode,int* firstValue, int* secondValue, bool* isAuto, bool* isEnabled, int* minValue, int* maxValue) {}
 	//get number of connected cameras
-	virtual int getCameraBaseCount() {return 0;}
+	virtual unsigned int getCameraBaseCount() {return 0;}
 	//public getter of camera frame size and depth
 	void getCameraSize(unsigned int* cameraWidth,unsigned int* cameraHeight,unsigned char* cameraDepth,unsigned char* pixelMode);
 	//public getter of cameraFrame
 	void getCameraFrame(unsigned char* newFrameData);
 	//public getter of camera index position
-	int getCameraIndex(){return index;}
+	unsigned int getCameraIndex(){return index;}
 	//public getter of camera global identifier
 	GUID getCameraGUID(){return guid;}
 	//public getter of camera initialized status
@@ -100,7 +100,7 @@ public:
 	//get camera GUIDs
 	virtual GUID* getBaseCameraGuids(int* camCount) { return NULL; }
 	//get camera supported features
-	virtual CAMERA_BASE_FEATURE* getSupportedFeatures(int* featuresCount) { *featuresCount = 0; return NULL; }
+	virtual CAMERA_BASE_FEATURE* getSupportedFeatures(unsigned int* featuresCount) { *featuresCount = 0; return NULL; }
 	//reading camera settings from XML
 	void loadCameraSettings();
 	//saving camera settings to XML
@@ -134,7 +134,7 @@ protected:
 	CAMERATYPE cameraType;
 	unsigned int width,height,framerate;
 	int isRaw;
-	int index,left,top;
+	unsigned int index,left,top;
 	unsigned char depth;
 	bool isInitialized,isNewFrame,isUsedForTracking;
 	int newFrameCurrentLifetime;
