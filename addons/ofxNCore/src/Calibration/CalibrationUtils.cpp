@@ -226,11 +226,11 @@ void CalibrationUtils::initScreenPoints(int cameraPosition)
 		{
 			int x = i % screenWidth;
 			x/=blockWidthSize;
-			if (x >= cameraGridWidth)
+			if (x >= (float)cameraGridWidth)
 				x = cameraGridWidth - 1;
 			int y = i / screenWidth;
 			y/=blockHeightSize;
-			if (y >= cameraGridHeight)
+			if (y >= (float)cameraGridHeight)
 				y = cameraGridHeight - 1;
 			int index = y * cameraGridWidth + x;
 			cameraMap[0][i]=(unsigned char)index;
@@ -273,7 +273,7 @@ void CalibrationUtils::initScreenPoints(int cameraPosition)
 			P++;
 		}
 	}
-	for (int i=0;i<cameraGridWidth * cameraGridHeight;i++)
+	for (unsigned int i=0;i<cameraGridWidth * cameraGridHeight;i++)
 		free(cameraMap[i]);
 	free(cameraMap);
 }

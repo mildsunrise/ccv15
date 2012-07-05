@@ -23,7 +23,7 @@ public:
 
 	int getId()
 	{
-		bool hasId=false;
+		//bool hasId=false;
 
 		for(unsigned int i=0;i<assignedIds.size();i++)
 		{
