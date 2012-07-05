@@ -121,7 +121,7 @@ GUID StringToGUID(const std::string &str)
 	else
 	{
 		unsigned long ret = 0;
-		for (int i=0;i<str.length();i++)
+		for (unsigned int i=0;i<str.length();i++)
 		{
 			ret*=10;
 			ret+=(str[i]-'0');
