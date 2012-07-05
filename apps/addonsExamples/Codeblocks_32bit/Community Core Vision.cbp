@@ -120,10 +120,14 @@ Legal Copyright:
 			<Add library="RtAudio" />
 			<Add library="GLee" />
 			<Add library="oFappsink" />
+			<Add library="flycapture" />
+			<Add library="flycapturegui" />
+			<Add library="multisync" />
 			<Add library="../../../addons/ofxOsc/libs/oscpack/lib/linux/liboscpack.a" />
 			<Add library="../../../addons/ofxOpenCv/libs/opencv/lib/linux/libcv.a" />
 			<Add library="../../../addons/ofxOpenCv/libs/opencv/lib/linux/libcxcore.a" />
 			<Add library="../../../addons/ofxOpenCv/libs/opencv/lib/linux/libcvaux.a" />
+			<Add directory="../../../addons/ofxFFMV/lib" />
 			<Add directory="../../../libs/freetype/lib/linux" />
 			<Add directory="../../../libs/FreeImage/lib/linux" />
 			<Add directory="../../../libs/rtAudio/lib/linux" />
