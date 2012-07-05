@@ -124,50 +124,26 @@
 			<Add after="cp -r ../../../export/linux/libs $(PROJECT_DIR)bin/" />
 			<Mode after="always" />
 		</ExtraCommands>
-		<Unit filename="../../../addons/ofxFFMV/src/ofxffmv.cpp">
-			<Option virtualFolder="addons/ofxFFMV/src" />
-		</Unit>
-		<Unit filename="../../../addons/ofxFFMV/src/ofxffmv.h">
-			<Option virtualFolder="addons/ofxFFMV/src" />
-		</Unit>
-		<Unit filename="../../../addons/ofxFFMV/src/pgrcameragui.h">
-			<Option virtualFolder="addons/ofxFFMV/src" />
-		</Unit>
-		<Unit filename="../../../addons/ofxFFMV/src/pgrflycapture.h">
-			<Option virtualFolder="addons/ofxFFMV/src" />
-		</Unit>
-		<Unit filename="../../../addons/ofxMultiplexer/src/ofxMultiplexer.cpp">
-			<Option virtualFolder="addons/ofxMultiplexer/src" />
-		</Unit>
-		<Unit filename="../../../addons/ofxMultiplexer/src/ofxGUIDHelper.cpp">
-			<Option virtualFolder="addons/ofxMultiplexer/src" />
-		</Unit>
-		<Unit filename="../../../addons/ofxMultiplexer/src/ofxMultiplexerManager.cpp">
-			<Option virtualFolder="addons/ofxMultiplexer/src" />
-		</Unit>
-		<Unit filename="../../../addons/ofxMultiplexer/inc/ofxMultiplexer.h">
-			<Option virtualFolder="addons/ofxMultiplexer/inc" />
-		</Unit>
-		<Unit filename="../../../addons/ofxMultiplexer/inc/ofxGUIDHelper.h">
-			<Option virtualFolder="addons/ofxMultiplexer/inc" />
-		</Unit>
-		<Unit filename="../../../addons/ofxMultiplexer/inc/ofxMultiplexerManager.h">
-			<Option virtualFolder="addons/ofxMultiplexer/inc" />
-		</Unit>
-		<Unit filename="../../../addons/ofxCameraBase/src/ofxCameraBase.cpp">
-			<Option virtualFolder="addons/ofxCameraBase/src" />
-		</Unit>
 		<Unit filename="../../../addons/ofxCameraBase/inc/ofxCameraBase.h">
 			<Option virtualFolder="addons/ofxCameraBase/inc" />
 		</Unit>
 		<Unit filename="../../../addons/ofxCameraBase/inc/ofxCameraBaseSettings.h">
 			<Option virtualFolder="addons/ofxCameraBase/inc" />
 		</Unit>
+		<Unit filename="../../../addons/ofxCameraBase/src/ofxCameraBase.cpp">
+			<Option virtualFolder="addons/ofxCameraBase/src" />
+		</Unit>
 		<Unit filename="../../../addons/ofxDirList/src/ofxDirList.cpp">
 			<Option virtualFolder="addons/ofxDirList/src" />
 		</Unit>
 		<Unit filename="../../../addons/ofxDirList/src/ofxDirList.h">
 			<Option virtualFolder="addons/ofxDirList/src" />
+		</Unit>
+		<Unit filename="../../../addons/ofxFFMV/src/ofxffmv.cpp">
+			<Option virtualFolder="addons/ofxFFMV/src" />
+		</Unit>
+		<Unit filename="../../../addons/ofxFFMV/src/ofxffmv.h">
+			<Option virtualFolder="addons/ofxFFMV/src" />
 		</Unit>
 		<Unit filename="../../../addons/ofxFiducialFinder/src/libfidtrack/default_trees.h">
 			<Option virtualFolder="addons/ofxFiducialFinder/libfidtrack/" />
@@ -213,6 +189,24 @@
 		</Unit>
 		<Unit filename="../../../addons/ofxFiducialFinder/src/ofxFinger.h">
 			<Option virtualFolder="addons/ofxFiducialFinder/" />
+		</Unit>
+		<Unit filename="../../../addons/ofxMultiplexer/inc/ofxGUIDHelper.h">
+			<Option virtualFolder="addons/ofxMultiplexer/inc" />
+		</Unit>
+		<Unit filename="../../../addons/ofxMultiplexer/inc/ofxMultiplexer.h">
+			<Option virtualFolder="addons/ofxMultiplexer/inc" />
+		</Unit>
+		<Unit filename="../../../addons/ofxMultiplexer/inc/ofxMultiplexerManager.h">
+			<Option virtualFolder="addons/ofxMultiplexer/inc" />
+		</Unit>
+		<Unit filename="../../../addons/ofxMultiplexer/src/ofxGUIDHelper.cpp">
+			<Option virtualFolder="addons/ofxMultiplexer/src" />
+		</Unit>
+		<Unit filename="../../../addons/ofxMultiplexer/src/ofxMultiplexer.cpp">
+			<Option virtualFolder="addons/ofxMultiplexer/src" />
+		</Unit>
+		<Unit filename="../../../addons/ofxMultiplexer/src/ofxMultiplexerManager.cpp">
+			<Option virtualFolder="addons/ofxMultiplexer/src" />
 		</Unit>
 		<Unit filename="../../../addons/ofxNCore/src/Calibration/Calibration.cpp">
 			<Option virtualFolder="addons/ofxNCore/src/Calibration/" />
