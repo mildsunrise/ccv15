@@ -10,7 +10,7 @@
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation; either version 2 of the License, or
  (at your option) any later version.
- 
+
  This program is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -33,7 +33,7 @@
 #define FIDUCIAL_REGION 4
 
 
-//this is for storing x, y and angle 
+//this is for storing x, y and angle
 //and to figure out speed and acceleration of position, rotation and angle
 struct _frame {
  float xpos,ypos,angle;
@@ -45,7 +45,7 @@ struct _frame {
  };
 
 class ofxFiducial {
-	
+
 public:
 	//public variables
 	//****//--------------------------------------------------------------------------------------
@@ -57,7 +57,7 @@ public:
 
 	//For CCV purpose only , to map into calibration
 	float x_pos,y_pos;
-	
+
 	//Constructor
 	//****//--------------------------------------------------------------------------------------
 	ofxFiducial() {
@@ -69,7 +69,7 @@ public:
 		current.angle	= 0.0f;
 		current.rotation_speed	= current.rotation_accel	= 0.0f;
 		current.motion_speed	= current.motion_accel		= 0.0f;
-		current.motion_speed_x	= current.motion_speed_y	= 0.0f; 
+		current.motion_speed_x	= current.motion_speed_y	= 0.0f;
 		alive			= true;
 		cornersUpdated  = false;
 		updated			= false;
@@ -79,7 +79,7 @@ public:
 		cornerPoints.resize(4);
 		saveLastFrame();
 	}
-	
+
 	//getter functions
 	//****//--------------------------------------------------------------------------------------
 	int	  getId()		{ return fidId; }
@@ -121,8 +121,8 @@ public:
 		//this is to try and filter out some of the jitter
 		//------------------------------------------------
 		float jitterThreshold	= 1.0;
-		
-		//if new posit - current posit is less than threshold dont update it must be jitter 
+
+		//if new posit - current posit is less than threshold dont update it must be jitter
 		if ( fabs(_x - current.xpos) > jitterThreshold ) current.xpos = _x;
 		else current.xpos = last.xpos;
 		if ( fabs(_y - current.ypos) > jitterThreshold ) current.ypos = _y;
@@ -137,14 +137,14 @@ public:
 		l_size			= _leaf; //update leaf size
 		state			= FIDUCIAL_FOUND; //fiducial found
 		updated			= true; //got updated
-		
+
 		computeSpeedAccel(); //compute speed & acceleration
-		
+
 		if ( updateCorners ) computeCorners(); //figures out the corners and fills the cornerPoints vector
 		else cornersUpdated = false;
 		saveLastFrame(); //last frame equal to this frame
 	}
-	
+
 	//Check for Removal
 	//this is done to make sure is survives for 2 frames if found missing
 	//****//--------------------------------------------------------------------------------------
@@ -159,22 +159,22 @@ public:
 			computeSpeedAccel();
 			--life;					//if not updated subtract life
 		}
-		
+
 		if (!life) alive = false;	//if life is gone alive is false ae. it is dead
 		updated = false;			//reset updated message
 		return alive;				//return life state
 	}
-	
+
 	//computes the corners an fills the cornerPoints vector
 	//****//--------------------------------------------------------------------------------------
 	void computeCorners() {
-		
+
 		//**here is the order//
 			//0+______+1//
 			// |      | //
 			// |      | //
 			//3+______+2//
-		
+
 		//clear vector
 		cornerPoints.clear();
 		//get upper left corner
@@ -191,14 +191,14 @@ public:
 		//this formula finds a point in the circumfrence of a circle
 		//point.x = hypotenuse * cos(radian)
 		//point.y = hypotenuse * sin(radian)
-		
+
 		//*corner degrees*/
 		//UR = 45
 		//UL = 135
 		//LL = 225
 		//LR = 315
 		//http://en.wikipedia.org/wiki/Unit_circle
-		
+
 		//upper left
 		addPoint.set((hyp * cos(rad + radians(135))) + current.xpos,
 					(hyp * sin(rad + radians(135))) + current.ypos);
@@ -215,50 +215,49 @@ public:
 		addPoint.set((hyp * cos(rad + radians(225))) + current.xpos,
 					(hyp * sin(rad + radians(225))) + current.ypos);
 		cornerPoints.push_back(addPoint);
-		
+
 		cornersUpdated = true;
-		}	
-	
+		}
+
 	//is a point inside this fiducial
 	//http://local.wasp.uwa.edu.au/~pbourke/geometry/insidepoly/
 	//****//--------------------------------------------------------------------------------------
 	bool isPointInside(float _x, float _y) {
-		
+
 		if ( !cornersUpdated ) computeCorners();
-		
- 		int counter = 0; 
- 		int i; 
- 		double xinters; 
+
+ 		int counter = 0;
+ 		double xinters;
  		ofPoint p1,p2;
 
- 		p1 = cornerPoints[0]; 
- 		for (i=1;i<=4;i++) { 
-			p2 = cornerPoints[i % 4]; 
-			if (_y > MIN(p1.y,p2.y)) { 
-				if (_y <= MAX(p1.y,p2.y)) { 
-					if (_x <= MAX(p1.x,p2.x)) { 
-						if (p1.y != p2.y) { 
-							xinters = (_y-p1.y)*(p2.x-p1.x)/(p2.y-p1.y)+p1.x; 
-							if (p1.x == p2.x || _x <= xinters) 
-								counter++; 
-							} 
-						} 
-					} 
-				} 
-				p1 = p2; 
-			} 
+ 		p1 = cornerPoints[0];
+ 		for (unsigned int i=1;i<=4;i++) {
+			p2 = cornerPoints[i % 4];
+			if (_y > MIN(p1.y,p2.y)) {
+				if (_y <= MAX(p1.y,p2.y)) {
+					if (_x <= MAX(p1.x,p2.x)) {
+						if (p1.y != p2.y) {
+							xinters = (_y-p1.y)*(p2.x-p1.x)/(p2.y-p1.y)+p1.x;
+                            if (p1.x == p2.x || _x <= xinters)
+                                counter++;
+                        }
+                    }
+                }
+            }
+			p1 = p2;
+        }
 
-		 	if (counter % 2 == 0) return false; 
- 			else return true; 
+		if (counter % 2 == 0) return false;
+ 		else return true;
 	}
-	
+
 	// Returns true if this fiducial collided with an other fiducial.
 	//****//--------------------------------------------------------------------------------------
 	bool isFidCollided(ofxFiducial& fiducial_2) {
-		
+
 		//make sure corners are up to date
 		fiducial_2.computeCorners();
-		
+
 		int counter = 0;
 		bool inside = false;
 		//check to make sure none of that fiducials points are inside this fiducial
@@ -276,17 +275,17 @@ public:
 		//return result
 		return inside;
 	}
-	
+
 	// returns the distance to this fiducials current position
 	//****//--------------------------------------------------------------------------------------
 	float getDistance(float _x, float _y) {
-		
+
 		float dx = _x - current.xpos;
 		float dy = _y - current.ypos;
 		return sqrt(dx*dx+dy*dy);
-	}	
-	
-	
+	}
+
+
 	//Operator overloading for FiducialX & ofxFiducial
 	//****//--------------------------------------------------------------------------------------
 	void operator=( const FiducialX& fiducial) {
@@ -298,7 +297,7 @@ public:
 		l_size			= fiducial.leaf_size;
 		current.time	= ofGetElapsedTimeMillis();
 	}
-	
+
 	void operator=( const ofxFiducial& fiducial) {
 		fidId			= fiducial.fidId;
 		current.xpos	= fiducial.current.xpos;
@@ -308,7 +307,7 @@ public:
 		l_size			= fiducial.l_size;
 		current.time	= fiducial.current.time;
 	}
-	
+
 	//draw fiducial
 	//****//--------------------------------------------------------------------------------------
 	void draw( float _x, float _y ) {
@@ -332,7 +331,7 @@ public:
 	//**** added by Stefan Schlupek//--------------------------------------------------------------------------------------
 	void drawScaled( float _x, float _y, float _scale_x, float _scale_y) {
 		ofFill();
-		
+
 ofEnableAlphaBlending() ;
 		ofSetRectMode(OF_RECTMODE_CENTER);
 		glPushMatrix();
@@ -341,19 +340,19 @@ ofEnableAlphaBlending() ;
 		glRotatef(deg, 0, 0, 1.0); // must flip degrees to compensate for image flip
 		ofSetColor(0, 255, 0,104);//set color green
 		ofRect(0, 0, r_size*_scale_x, r_size*_scale_y); //draw root size red
-		
+
 ofDisableAlphaBlending() ;
 		ofNoFill();
 		ofSetColor(0, 0, 255); //set color blue
 		ofCircle(0, l_size*4, 4); //draw leaf size blue
-		
+
 		ofSetColor(0, 54, 0); //set color green
 		ofDrawBitmapString(ofToString( fidId ), 0, 0); //draw fiducial number green
 		glPopMatrix();
 		ofSetRectMode(OF_RECTMODE_CORNER);
 		ofSetColor(255,255,255);
 	}
-	
+
 	//draw corners
 	//****//--------------------------------------------------------------------------------------
 	void drawCorners( float _x, float _y ) {
@@ -363,7 +362,7 @@ ofDisableAlphaBlending() ;
 		glPushMatrix();
 		glTranslatef(_x, _y, 0);
 		if (cornerPoints.size() > 0) {
-			for(int i = 0; i < cornerPoints.size() ;i++) {
+			for(unsigned int i = 0; i < cornerPoints.size() ;i++) {
 				ofCircle(cornerPoints[i].x, cornerPoints[i].y, 4);
 				////printf("corner 0.x: %f corner 0.y %f\n", cornerPoints[i].x, cornerPoints[i].y);
 				}
@@ -383,7 +382,7 @@ ofDisableAlphaBlending() ;
 		glPushMatrix();
 		glTranslatef(_x, _y, 0);
 		if (cornerPoints.size() > 0) {
-			for(int i = 0; i < cornerPoints.size() ;i++) {
+			for(unsigned int i = 0; i < cornerPoints.size() ;i++) {
 				ofCircle(cornerPoints[i].x*_scale_x, cornerPoints[i].y*_scale_y, 3);
 				////printf("corner 0.x: %f corner 0.y %f\n", cornerPoints[i].x, cornerPoints[i].y);
 				}
@@ -392,8 +391,8 @@ ofDisableAlphaBlending() ;
 		ofSetColor(255,255,255);
 		//printf("corner 0.x: %f corner 0.y %f\n", cornerPoints[0].x, cornerPoints[0].y);
 		}
-		
-	
+
+
 	//private stuff
 	//****//--------------------------------------------------------------------------------------
 private:
@@ -402,34 +401,34 @@ private:
 	bool	cornersUpdated;
 	int		life;//fids lifespan in frames
 	int		state;//fids lost/found state
-	
+
 	// conversions from degree to radian and back
 	float radians (float degrees) {
 		return degrees*PI/180.0;
 	}
-	
+
 	float degrees (float radians) {
 		return radians*180.0/PI;
 	}
-	
+
 	//compute speed, accel, etc...
-	void computeSpeedAccel() {		
+	void computeSpeedAccel() {
 		if (last.time==0) return;
-		
+
 		int   dt	= current.time - last.time;
 		float dx	= current.xpos - last.xpos;
 		float dy	= current.ypos - last.ypos;
 		float dist	= sqrt(dx*dx+dy*dy);
-		
+
 		current.motion_speed	= dist/dt;
 		current.motion_speed_x	= fabs(dx/dt);
 		current.motion_speed_y	= fabs(dy/dt);
 		current.rotation_speed  = fabs(current.angle-last.angle)/dt;
 
 		current.motion_accel	= (current.motion_speed-last.motion_speed)/dt;
-		current.rotation_accel	= (current.rotation_speed-last.rotation_speed)/dt;		
+		current.rotation_accel	= (current.rotation_speed-last.rotation_speed)/dt;
 	}
-	
+
 	//make last frame = this frame
 	void saveLastFrame() {
 		last.time	= current.time;
@@ -439,7 +438,7 @@ private:
 		last.motion_speed	= current.motion_speed;
 		last.rotation_speed = current.rotation_speed;
 	}
-	
+
 };
 
 #endif

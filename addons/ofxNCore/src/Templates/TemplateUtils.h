@@ -24,9 +24,8 @@ public:
 	int getId()
 	{
 		bool hasId=false;
-		int i;
 
-		for(i=0;i<assignedIds.size();i++)
+		for(unsigned int i=0;i<assignedIds.size();i++)
 		{
 			if(idCounter==assignedIds[i])
 			{
@@ -46,7 +45,7 @@ public:
 		}
 	}
 
-	//Functions 
+	//Functions
 	bool loadTemplateXml();
 	void saveTemplateXml();
 	void addTemplate(ofRectangle rect,ofRectangle minRect, ofRectangle maxRect,float scaleX ,float scaleY);
