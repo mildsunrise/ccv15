@@ -485,7 +485,9 @@ void ofxNCoreVision::_update(ofEventArgs &e)
 		{
 			//printf("sending data osc : %d TCP : %d binary : %d\n", myTUIO.bOSCMode, myTUIO.bTCPMode, myTUIO.bBinaryMode);
 			myTUIO.setMode(contourFinder.bTrackFingers , contourFinder.bTrackObjects, contourFinder.bTrackFiducials);
-			myTUIO.sendTUIO(&getBlobs(),&getObjects(),&fidfinder.fiducialsList);
+			std::map<int, Blob> blobs = getBlobs();
+			std::map<int, Blob> objects = getObjects();
+			myTUIO.sendTUIO(&blobs,&objects,&fidfinder.fiducialsList);
 		}
 	}
 }
