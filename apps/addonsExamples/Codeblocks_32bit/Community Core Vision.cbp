@@ -133,11 +133,15 @@ Legal Copyright:
 			<Add library="flycapture" />
 			<Add library="flycapturegui" />
 			<Add library="multisync" />
-			<Add library="../../../addons/ofxOsc/libs/oscpack/lib/linux/liboscpack.a" />
-			<Add library="../../../addons/ofxOpenCv/libs/opencv/lib/linux/libcv.a" />
-			<Add library="../../../addons/ofxOpenCv/libs/opencv/lib/linux/libcxcore.a" />
-			<Add library="../../../addons/ofxOpenCv/libs/opencv/lib/linux/libcvaux.a" />
+			<Add library="gobject-2.0" />
+			<Add library="glib-2.0" />
+			<Add library="cv" />
+			<Add library="cxcore" />
+			<Add library="cvaux" />
+			<Add library="oscpack" />
+			<Add directory="../../../addons/ofxOsc/libs/oscpack/lib/linux" />
 			<Add directory="../../../addons/ofxFFMV/lib" />
+			<Add directory="../../../addons/ofxOpenCv/libs/opencv/lib/linux" />
 			<Add directory="../../../libs/freetype/lib/linux" />
 			<Add directory="../../../libs/FreeImage/lib/linux" />
 			<Add directory="../../../libs/rtAudio/lib/linux" />
@@ -145,6 +149,7 @@ Legal Copyright:
 			<Add directory="../../../libs/gstappsink/lib/linux" />
 			<Add directory="../../../libs/fmodex/lib/linux" />
 			<Add directory="../../../libs/poco/lib/linux" />
+			<Add directory="../../../libs/openFrameworksCompiled/lib/linux" />
 		</Linker>
 		<ExtraCommands>
 			<Add after="#" />
