@@ -18,7 +18,7 @@
 #include "ofxMultiplexer.h"
 #include "ofxXmlSettings.h"
 #include <vector>
-#include "Filters\Filters.h"
+#include "Filters/Filters.h"
 #include "Calibration.h"
 
 
