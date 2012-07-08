@@ -23,7 +23,7 @@
 #include "ofxKinect.h"
 #include "ofxCMUCamera.h"
 #include "ofxGUIDHelper.h"
-#include "ofxXMLSettings.h"
+#include "ofxXmlSettings.h"
 #include "Calibration.h"
 
 #define NULL_CAMERA 0xFF
