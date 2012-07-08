@@ -1,2 +1,3 @@
 libs/openFrameworksCompiled
 apps/addonsExamples/Codeblocks_*bit/obj
+apps/addonsExamples/Codeblocks_*bit/*.layout
