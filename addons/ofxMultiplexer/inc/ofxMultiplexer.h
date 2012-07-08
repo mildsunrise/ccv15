@@ -1,6 +1,6 @@
 /*
 *  ofxMultiplexer.h
-*  
+*
 *
 *  Created on 12/03/11.
 *  Copyright 2011 NUI Group. All rights reserved.
@@ -15,7 +15,6 @@
 #include <omp.h>
 #include <memory.h>
 #include <vector>
-#include "omp.h"
 #include "ofxCameraBase.h"
 #include "ofxCameraBaseSettings.h"
 #include "ofxffmv.h"
