@@ -19,14 +19,7 @@ typedef struct _GUID {          // size is 16
 } GUID;
 
 //...and the == operator
-bool operator==(const GUID& lhs, const GUID& rhs) {
-    if (lhs.Data1 != rhs.Data1) return false;
-    if (lhs.Data2 != rhs.Data2) return false;
-    if (lhs.Data3 != rhs.Data3) return false;
-    for (int i=0; i<8; i++)
-        if (lhs.Data4[i] != rhs.Data4[i]) return false;
-    return true;
-}
+bool operator==(const GUID& lhs, const GUID& rhs);
 #endif
 
 //Convert an hex string to a number
