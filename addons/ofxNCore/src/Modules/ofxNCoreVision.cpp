@@ -399,7 +399,7 @@ void ofxNCoreVision::_update(ofEventArgs &e)
 		}
 		multiplexer->updateStitchedFrame();
 		bNewFrame = true;
-	#endif	
+	#endif
 	}
 	else //if video
 	{
@@ -523,7 +523,7 @@ void ofxNCoreVision::getPixels()
 			sourceImg.setFromPixels(vidPlayer->getPixels(), camWidth, camHeight);
 			processedImg = sourceImg;
 			if(contourFinder.bTrackFiducials || bFidtrackInterface){processedImg_fiducial = sourceImg;}
-		}	
+		}
 	}
 }
 
@@ -538,7 +538,7 @@ void ofxNCoreVision::grabFrameToGPU(GLuint target)
 {
 	if (bcamera)
 	{
-		
+
 		glEnable(GL_TEXTURE_2D);
 		//glPixelStorei(1);
 		glBindTexture(GL_TEXTURE_2D, target);
@@ -552,7 +552,7 @@ void ofxNCoreVision::grabFrameToGPU(GLuint target)
 				camWidth = w;
 				camHeight = h;
 				capturedData = (unsigned char*)malloc(w*h*sizeof(unsigned char));
-			}	 
+			}
 			multiplexer->getStitchedFrame(&w,&h,capturedData);
 			glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, camWidth, camHeight, GL_LUMINANCE, GL_UNSIGNED_BYTE, capturedData);
 		}
@@ -604,7 +604,7 @@ void ofxNCoreVision::_draw(ofEventArgs &e)
 				{
 					drawFiducials();
 				}
-			
+
 				if(contourFinder.bTrackObjects && isSelecting)
 				{
 					ofNoFill();
@@ -617,10 +617,10 @@ void ofxNCoreVision::_draw(ofEventArgs &e)
 				}
 			}
 			if (!bCalibration && !bMiniMode) {controls->draw();}
-		
+
 		}
 	}
-	if (bMultiCamsInterface && bDraggingImage ) 
+	if (bMultiCamsInterface && bDraggingImage )
 		draggingImage->draw();
 }
 
@@ -675,12 +675,12 @@ void ofxNCoreVision::drawFullMode()
 			multiplexer->getCalibrationGridSize(&tWidth,&tHeight);
 			str8+= ofToString(tWidth,0)+"x"+ofToString(tHeight,0)+"\n";
 		}
-		
+
 		ofSetColor(0x555555);
 		verdana.drawString(  str3 + str4+str4a+str6 + str1 +  str2 + "\n\n\n" + str7 + str8 , DEBUG_TEXT_OFFSET_X1, DEBUG_TEXT_OFFSET_Y1);
 
-		// REMOVED + str5 
- 
+		// REMOVED + str5
+
 		//TUIO data drawing
 		char buf[256]="";
 		if(myTUIO.bOSCMode && myTUIO.bTCPMode)
@@ -740,7 +740,7 @@ void ofxNCoreVision::drawMiniMode()
 		{
 			contourFinder.objects[i].drawBox(0,0, camWidth, camHeight, ofGetWidth(), ofGetHeight()-96);
 		}
-		
+
 	}
 
 	//draw grey rectagles for text information
@@ -953,7 +953,7 @@ void ofxNCoreVision::_keyPressed(ofKeyEventArgs &e)
 		case 'v':
 				//#ifdef TARGET_WIN32
 
-				
+
                 //#endif
 			filter->bVerticalMirror ? filter->bVerticalMirror = false : filter->bVerticalMirror = true;
 			filter_fiducial->bVerticalMirror ? filter_fiducial->bVerticalMirror = false : filter_fiducial->bVerticalMirror = true;
@@ -965,11 +965,11 @@ void ofxNCoreVision::_keyPressed(ofKeyEventArgs &e)
 			{
 					if ( multiplexerManager != NULL )
 						multiplexerManager->removeAllCameraBasesFromMultiplexer();
-					if ( camsGrid != NULL ) 
+					if ( camsGrid != NULL )
 						camsGrid->resetAll();
 					if ( devGrid != NULL )
 						devGrid->setImages();
-					if ( camsGrid != NULL ) 
+					if ( camsGrid != NULL )
 						camsGrid->setImages();
 			}
 			break;
@@ -1016,7 +1016,7 @@ void ofxNCoreVision::_keyPressed(ofKeyEventArgs &e)
 			if (!bcamera)
 				break;
 			if (bCalibration)
-			{	
+			{
 				if (multiplexerManager!=NULL)
 					multiplexerManager->cancelCalibration();
 				bShowInterface = true;
@@ -1025,7 +1025,7 @@ void ofxNCoreVision::_keyPressed(ofKeyEventArgs &e)
 				tracker.isCalibrating = false;
 				if (bFullscreen == true) ofToggleFullscreen();
 				bFullscreen = false;
-				ofSetFrameRate(camRate * 1.3);	
+				ofSetFrameRate(camRate * 1.3);
 			}
 			break;
 		case OF_KEY_RETURN: //Close Template Selection and save it
@@ -1060,18 +1060,18 @@ void ofxNCoreVision::_keyPressed(ofKeyEventArgs &e)
 			//printf("%c",e.key);
 			break;
 		}
-	} 
+	}
 }
 
 void ofxNCoreVision::_keyReleased(ofKeyEventArgs &e)
-{ 
+{
 	if (showConfiguration)
 	{
 		if ( e.key == 'c' && !bCalibration)
 		{
 			if (!bcamera)
 				return;
-			ofSetFrameRate(40);	//BUG : when framerate is high - calibration is not stable		
+			ofSetFrameRate(40);	//BUG : when framerate is high - calibration is not stable
 			bShowInterface = false;
 			// Enter/Exit Calibration
 			bCalibration = true;
@@ -1085,7 +1085,7 @@ void ofxNCoreVision::_keyReleased(ofKeyEventArgs &e)
 			bFullscreen = true;
 		}
 	}
-	if ( e.key == '~' || e.key == '`' && !bMiniMode && !bCalibration) showConfiguration = !showConfiguration;
+	if ( (e.key == '~' || e.key == '`') && !bMiniMode && !bCalibration) showConfiguration = !showConfiguration;
 }
 
 /*****************************************************************************
@@ -1114,7 +1114,7 @@ void ofxNCoreVision::_mouseDragged(ofMouseEventArgs &e)
 			}
 		}
 	}
-	if ( bDraggingImage && bMultiCamsInterface ) 
+	if ( bDraggingImage && bMultiCamsInterface )
 	{
 		draggingImage->setXYPos(
 			e.x - draggingXOffset < 0 ? 0 : e.x - draggingXOffset,
@@ -1156,7 +1156,7 @@ void ofxNCoreVision::_mouseReleased(ofMouseEventArgs &e)
 			maxRect = rect;
 		}
 	}
-	if ( bDraggingImage ) 
+	if ( bDraggingImage )
 		this->bDraggingImage = false;
 }
 
@@ -1184,7 +1184,7 @@ void ofxNCoreVision::_exit(ofEventArgs &e)
 	//Save templates
 	if(contourFinder.bTrackObjects)
 		templates.saveTemplateXml();
-	
+
 	// AlexP
 	// C++ guarantees that operator delete checks its argument for null-ness
     #ifdef TARGET_WIN32
@@ -1203,21 +1203,21 @@ void ofxNCoreVision::_exit(ofEventArgs &e)
 	printf("Vision module has exited!\n");
 }
 
-void ofxNCoreVision::switchMultiCamsGUI( bool showCams ) 
+void ofxNCoreVision::switchMultiCamsGUI( bool showCams )
 {
 	printf( "\nofxNCoreVision::switchMultiCamsGUI\n" );
-	if ( showCams ) 
+	if ( showCams )
 	{
 		bMultiCamsInterface = true;
 		removeMainPanels();
 		addMulticameraPanels();
-		if ( camsGrid != NULL ) 
+		if ( camsGrid != NULL )
 			camsGrid->setImages();
-		if ( devGrid != NULL ) 
+		if ( devGrid != NULL )
 			devGrid->setImages();
 		multiplexerManager->resumeCaptureFromAllCameras();
-	} 
-	else 
+	}
+	else
 	{
 		bMultiCamsInterface = false;
 		removeMulticameraPanels();
@@ -1226,20 +1226,20 @@ void ofxNCoreVision::switchMultiCamsGUI( bool showCams )
 	}
 }
 
-void ofxNCoreVision::updateCameraGridSize( int x, int y ) 
+void ofxNCoreVision::updateCameraGridSize( int x, int y )
 {
 	//devGrid->setMode( kofxGui_Grid_Selectable, ( x * y <= multiplexerManager->getCameraBaseCount() )  );
-	if ( multiplexerManager != NULL ) 
+	if ( multiplexerManager != NULL )
 		multiplexerManager->setCameraGridSize( x, y );
-	if ( camsGrid != NULL ) 
+	if ( camsGrid != NULL )
 		camsGrid->setXY( x, y );
-	if ( devGrid != NULL ) 
+	if ( devGrid != NULL )
 		devGrid->setImages();
 }
 
 void ofxNCoreVision::updateCalibrationGridSize( int x, int y )
 {
-	if ( multiplexerManager != NULL ) 
+	if ( multiplexerManager != NULL )
 		multiplexerManager->setCalibratonGridSize( x, y );
 }
 
