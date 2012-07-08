@@ -45,13 +45,13 @@ void CalibrationUtils::setCalibrationProperties(unsigned int stitchedFrameWidth,
 	this->isInterleaveMode = isInterleaveMode;
 	if (screenPoints != NULL)
 		free(screenPoints);
-	screenPoints = (ofxVec2f*)malloc(GRID_POINTS * sizeof(ofxVec2f));
+	screenPoints = (vector2df*)malloc(GRID_POINTS * sizeof(vector2df));
 	if (cameraPoints != NULL)
 		free(cameraPoints);
-	cameraPoints = (ofxVec2f*)malloc(GRID_POINTS*sizeof(ofxVec2f));
+	cameraPoints = (vector2df*)malloc(GRID_POINTS*sizeof(vector2df));
 	if (drawingPoints != NULL)
 		free(drawingPoints);
-	drawingPoints = (ofxVec2f*)malloc(GRID_POINTS*sizeof(ofxVec2f));
+	drawingPoints = (vector2df*)malloc(GRID_POINTS*sizeof(vector2df));
 	setCalibrationCameraIndex(0);
 }
 
@@ -150,10 +150,10 @@ void CalibrationUtils::setCalibrationCameraIndex(unsigned int cameraIndex)
 	{
 		for (int i=0;i<=GRID_X;i++)
 		{
-			drawingPoints[P].x = (float)(calibrationGridCellWidth * i + LeftX)/screenWidth;
-			drawingPoints[P].y = (float)(calibrationGridCellHeight * j + TopY)/screenHeight;
-			screenPoints[P].x = (float)(calibrationGridCellWidth * i + LeftX);
-			screenPoints[P].y = (float)(calibrationGridCellHeight * j + TopY);
+			drawingPoints[P].X = (float)(calibrationGridCellWidth * i + LeftX)/screenWidth;
+			drawingPoints[P].Y = (float)(calibrationGridCellHeight * j + TopY)/screenHeight;
+			screenPoints[P].X = (float)(calibrationGridCellWidth * i + LeftX);
+			screenPoints[P].Y = (float)(calibrationGridCellHeight * j + TopY);
 			P++;
 		}
 	}
@@ -170,7 +170,7 @@ void CalibrationUtils::initCameraPoints()
 	{
 		for(int i = 0; i <= GRID_X; i++)
 		{
-			cameraPoints[p] = ofxVec2f((i) / (float)GRID_X, (j) / (float)GRID_Y);
+			cameraPoints[p] = vector2df((i) / (float)GRID_X, (j) / (float)GRID_Y);
 			p++;
 		}
 	}
@@ -268,8 +268,8 @@ void CalibrationUtils::initScreenPoints(int cameraPosition)
 	{
 		for (int i=0;i<=GRID_X;i++)
 		{
-			screenPoints[P].x = (float)(calibrationGridCellWidth * i + LeftX);
-			screenPoints[P].y = (float)(calibrationGridCellHeight * j + TopY);
+			screenPoints[P].X = (float)(calibrationGridCellWidth * i + LeftX);
+			screenPoints[P].Y = (float)(calibrationGridCellHeight * j + TopY);
 			P++;
 		}
 	}
