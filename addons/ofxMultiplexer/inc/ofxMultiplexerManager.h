@@ -1,5 +1,5 @@
 /* ofxMulticamManager.h
-*  
+*
 *  Created on 20/08/11.
 *  Copyright 2011 NUI Group. All rights reserved.
 *  Author: Anatoly Churikov
@@ -16,7 +16,7 @@
 #include "ofxKinect.h"
 #include "ofxCMUCamera.h"
 #include "ofxMultiplexer.h"
-#include "ofxXMLSettings.h"
+#include "ofxXmlSettings.h"
 #include <vector>
 #include "Filters\Filters.h"
 #include "Calibration.h"
