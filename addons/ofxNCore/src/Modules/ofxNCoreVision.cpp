@@ -470,7 +470,7 @@ void ofxNCoreVision::_update(ofEventArgs &e)
 		//get DSP time
 		differenceTime = ofGetElapsedTimeMillis() - beforeTime;
 
-		//Dynamic Background subtraction LearRate
+		//Dynamic Background subtraction Learning Rate
 		if (filter->bDynamicBG)
 		{
 			filter->fLearnRate = backgroundLearnRate * .0001; //If there are no blobs, add the background faster.
