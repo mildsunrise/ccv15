@@ -5,7 +5,7 @@
 		<Option title="Community Core Vision" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="addons/;src/;addons/ofxDirList/src;addons/ofxNetwork/src;addons/ofxOpenCv/src;addons/ofxOsc/src;addons/ofxThread/src;addons/ofxVectorGraphics/src;addons/ofxVectorMath/src;addons/ofxXmlSettings/src;addons/ofxDirList/src/;addons/ofxNetwork/src/;addons/ofxOpenCv/src/;addons/ofxOsc/src/;addons/ofxThread/src/;addons/ofxVectorGraphics/src/;addons/ofxVectorMath/src/;addons/ofxXmlSettings/src/;addons/ofxFiducialFinder/;addons/ofxFiducialFinder/libfidtrack/;addons/ofxDirList/;addons/ofxNCore/;addons/ofxNCore/src/;addons/ofxNCore/src/Calibration/;addons/ofxNCore/src/Camera/;addons/ofxNCore/src/Communication/;addons/ofxNCore/src/Events/;addons/ofxNCore/src/Controls/;addons/ofxNCore/src/Filters/;addons/ofxNCore/src/Modules/;addons/ofxNCore/src/Templates/;addons/ofxNCore/src/Tracking/;addons/ofxXmlSettings/src/libs/;addons/ofxVectorGraphics/libs/;addons/ofxCameraBase/src/;addons/ofxCameraBase/inc/;addons/ofxMultiplexer/src/;addons/ofxMultiplexer/inc/;addons/ofxFFMV/src/;addons/ofxFFMV/lib/;addons/ofxFFMV/dll/;" />
+		<Option virtualFolders="addons/;src/;addons/ofxDirList/src;addons/ofxNetwork/src;addons/ofxOpenCv/src;addons/ofxOsc/src;addons/ofxThread/src;addons/ofxVectorGraphics/src;addons/ofxVectorMath/src;addons/ofxXmlSettings/src;addons/ofxDirList/src/;addons/ofxNetwork/src/;addons/ofxOpenCv/src/;addons/ofxOsc/src/;addons/ofxThread/src/;addons/ofxVectorGraphics/src/;addons/ofxVectorMath/src/;addons/ofxXmlSettings/src/;addons/ofxFiducialFinder/;addons/ofxFiducialFinder/libfidtrack/;addons/ofxDirList/;addons/ofxNCore/;addons/ofxNCore/src/;addons/ofxNCore/src/Calibration/;addons/ofxNCore/src/Camera/;addons/ofxNCore/src/Communication/;addons/ofxNCore/src/Events/;addons/ofxNCore/src/Controls/;addons/ofxNCore/src/Filters/;addons/ofxNCore/src/Modules/;addons/ofxNCore/src/Templates/;addons/ofxNCore/src/Tracking/;addons/ofxXmlSettings/src/libs/;addons/ofxVectorGraphics/libs/;addons/ofxCameraBase/src/;addons/ofxCameraBase/inc/;addons/ofxMultiplexer/src/;addons/ofxMultiplexer/inc/;addons/ofxFFMV/src/;addons/ofxFFMV/lib/;addons/ofxFFMV/dll/;addons/ofxPS3/dll/;addons/ofxPS3/lib/;addons/ofxPS3/src/;" />
 		<Option show_notes="0">
 			<notes>
 				<![CDATA[Community Core Vision (CCV-1.5)
@@ -101,11 +101,21 @@ Legal Copyright:
 			<Add directory="../../../addons/ofxOsc/libs/oscpack/include" />
 			<Add directory="../../../addons/ofxFiducialFinder/src" />
 			<Add directory="../../../addons/ofxNCore/src" />
+			<Add directory="../../../addons/ofxNCore/src/Calibration" />
+			<Add directory="../../../addons/ofxNCore/src/Camera" />
+			<Add directory="../../../addons/ofxNCore/src/Communication" />
+			<Add directory="../../../addons/ofxNCore/src/Controls" />
+			<Add directory="../../../addons/ofxNCore/src/Events" />
+			<Add directory="../../../addons/ofxNCore/src/Filters" />
+			<Add directory="../../../addons/ofxNCore/src/Modules" />
+			<Add directory="../../../addons/ofxNCore/src/Templates" />
+			<Add directory="../../../addons/ofxNCore/src/Tracking" />
 			<Add directory="../../../addons/ofxCameraBase/src" />
 			<Add directory="../../../addons/ofxCameraBase/inc" />
 			<Add directory="../../../addons/ofxMultiplexer/src" />
 			<Add directory="../../../addons/ofxMultiplexer/inc" />
 			<Add directory="../../../addons/ofxFFMV/src" />
+			<Add directory="../../../addons/ofxPS3/src" />
 		</Compiler>
 		<Linker>
 			<Add library="fmodex" />
@@ -538,6 +548,24 @@ Legal Copyright:
 		</Unit>
 		<Unit filename="../../../addons/ofxOsc/src/ofxOscSender.h">
 			<Option virtualFolder="addons/ofxOsc/src" />
+		</Unit>
+		<Unit filename="../../../addons/ofxPS3/dll/CLEyeMulticam.dll">
+			<Option virtualFolder="addons/ofxPS3/dll/" />
+		</Unit>
+		<Unit filename="../../../addons/ofxPS3/dll/winusb.dll">
+			<Option virtualFolder="addons/ofxPS3/dll/" />
+		</Unit>
+		<Unit filename="../../../addons/ofxPS3/lib/CLEyeMulticam.lib">
+			<Option virtualFolder="addons/ofxPS3/lib/" />
+		</Unit>
+		<Unit filename="../../../addons/ofxPS3/src/CLEyeMulticam.h">
+			<Option virtualFolder="addons/ofxPS3/src/" />
+		</Unit>
+		<Unit filename="../../../addons/ofxPS3/src/ofxPS3.cpp">
+			<Option virtualFolder="addons/ofxPS3/src/" />
+		</Unit>
+		<Unit filename="../../../addons/ofxPS3/src/ofxPS3.h">
+			<Option virtualFolder="addons/ofxPS3/src/" />
 		</Unit>
 		<Unit filename="../../../addons/ofxThread/src/ofxThread.cpp">
 			<Option virtualFolder="addons/ofxThread/src" />
