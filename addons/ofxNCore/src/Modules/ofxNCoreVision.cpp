@@ -346,7 +346,7 @@ void ofxNCoreVision::initDevice()
 	if(debugMode) if((stream = freopen(fileName, "a", stdout)) == NULL){}
 	if (bcamera)
 	{
-		#ifdef TARGET_WIN32
+		//#ifdef TARGET_WIN32 //Again, see note at the top of the header
 		multiplexerManager = new ofxMultiplexerManager();
 		for (int i=0;i<supportedCameraTypes.size();i++)
 		{
@@ -359,7 +359,7 @@ void ofxNCoreVision::initDevice()
 		multiplexerManager->setMultiplexer(multiplexer);
 		multiplexerManager->startMulticamManager();
 		interleaveMode = multiplexerManager->getInterleaveMode();
-		#endif
+		//#endif
 	}
 	else
 	{
