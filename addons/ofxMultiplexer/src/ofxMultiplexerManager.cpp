@@ -1,6 +1,6 @@
 /*
 *  ofxMulticamManager.cpp
-*  
+*
 *
 *  Created on 20/08/11.
 *  Copyright 2011 NUI Group. All rights reserved.
@@ -339,10 +339,10 @@ void ofxMultiplexerManager::readSettingsFromXML(char* fileName)
 
 				int calibrationPointWidth = calibrationGridWidth + 1;
 				int calibrationPointHeight = calibrationGridHeight + 1;
-			
+
 				float cameraCellWidth = 1.0f / calibrationGridWidth;
 				float cameraCellHeight = 1.0f / calibrationGridHeight;
-				
+
 				for (int j = 0;j<calibrationPointWidth*calibrationPointHeight;j++)
 				{
 					if (numPointTags==calibrationPointWidth*calibrationPointHeight)
@@ -495,32 +495,32 @@ void ofxMultiplexerManager::enumerateCameras()
 {
 	for (int i=0;i<allowdedCameraTypes.size();i++)
 	{
-		if (allowdedCameraTypes[i] == PS3)
-		{
-			ofxCameraBase* cam = (ofxCameraBase*)(new ofxPS3());
-			int cameraCount = 0;
-			GUID* cameraGUIDs = cam->getBaseCameraGuids(&cameraCount);
-			for (int j=0;j<cameraCount;j++)
-			{
-				ofxCameraBase* newCam = (ofxCameraBase*)(new ofxPS3());
-				newCam->initializeWithGUID(cameraGUIDs[j]);
-				cameraBases.push_back(newCam);
-			}
-			delete cam;
-		}
-		if (allowdedCameraTypes[i] == CMU)
-		{
-			ofxCameraBase* cam = (ofxCameraBase*)(new ofxCMUCamera());
-			int cameraCount = 0;
-			GUID* cameraGUIDs = cam->getBaseCameraGuids(&cameraCount);
-			for (int j=0;j<cameraCount;j++)
-			{
-				ofxCameraBase* newCam = (ofxCameraBase*)(new ofxCMUCamera());
-				newCam->initializeWithGUID(cameraGUIDs[j]);
-				cameraBases.push_back(newCam);
-			}
-			delete cam;
-		}
+//		if (allowdedCameraTypes[i] == PS3)
+//		{
+//			ofxCameraBase* cam = (ofxCameraBase*)(new ofxPS3());
+//			int cameraCount = 0;
+//			GUID* cameraGUIDs = cam->getBaseCameraGuids(&cameraCount);
+//			for (int j=0;j<cameraCount;j++)
+//			{
+//				ofxCameraBase* newCam = (ofxCameraBase*)(new ofxPS3());
+//				newCam->initializeWithGUID(cameraGUIDs[j]);
+//				cameraBases.push_back(newCam);
+//			}
+//			delete cam;
+//		}
+//		if (allowdedCameraTypes[i] == CMU)
+//		{
+//			ofxCameraBase* cam = (ofxCameraBase*)(new ofxCMUCamera());
+//			int cameraCount = 0;
+//			GUID* cameraGUIDs = cam->getBaseCameraGuids(&cameraCount);
+//			for (int j=0;j<cameraCount;j++)
+//			{
+//				ofxCameraBase* newCam = (ofxCameraBase*)(new ofxCMUCamera());
+//				newCam->initializeWithGUID(cameraGUIDs[j]);
+//				cameraBases.push_back(newCam);
+//			}
+//			delete cam;
+//		}
 		if (allowdedCameraTypes[i] == FFMV)
 		{
 			ofxCameraBase* cam = (ofxCameraBase*)(new ofxffmv());
@@ -534,32 +534,32 @@ void ofxMultiplexerManager::enumerateCameras()
 			}
 			delete cam;
 		}
-		if (allowdedCameraTypes[i] == KINECT)
-		{
-			ofxCameraBase* cam = (ofxCameraBase*)(new ofxKinect());
-			int cameraCount = 0;
-			GUID* cameraGUIDs = cam->getBaseCameraGuids(&cameraCount);
-			for (int j=0;j<cameraCount;j++)
-			{
-				ofxCameraBase* newCam = (ofxCameraBase*)(new ofxKinect());
-				newCam->initializeWithGUID(cameraGUIDs[j]);
-				cameraBases.push_back(newCam);
-			}
-			delete cam;
-		}
-		if (allowdedCameraTypes[i] == DIRECTSHOW)
-		{
-			ofxCameraBase* cam = (ofxCameraBase*)(new ofxDShow());
-			int cameraCount = 0;
-			GUID* cameraGUIDs = cam->getBaseCameraGuids(&cameraCount);
-			for (int j=0;j<cameraCount;j++)
-			{
-				ofxCameraBase* newCam = (ofxCameraBase*)(new ofxDShow());
-				newCam->initializeWithGUID(cameraGUIDs[j]);
-				cameraBases.push_back(newCam);
-			}
-			delete cam;
-		}
+//		if (allowdedCameraTypes[i] == KINECT)
+//		{
+//			ofxCameraBase* cam = (ofxCameraBase*)(new ofxKinect());
+//			int cameraCount = 0;
+//			GUID* cameraGUIDs = cam->getBaseCameraGuids(&cameraCount);
+//			for (int j=0;j<cameraCount;j++)
+//			{
+//				ofxCameraBase* newCam = (ofxCameraBase*)(new ofxKinect());
+//				newCam->initializeWithGUID(cameraGUIDs[j]);
+//				cameraBases.push_back(newCam);
+//			}
+//			delete cam;
+//		}
+//		if (allowdedCameraTypes[i] == DIRECTSHOW)
+//		{
+//			ofxCameraBase* cam = (ofxCameraBase*)(new ofxDShow());
+//			int cameraCount = 0;
+//			GUID* cameraGUIDs = cam->getBaseCameraGuids(&cameraCount);
+//			for (int j=0;j<cameraCount;j++)
+//			{
+//				ofxCameraBase* newCam = (ofxCameraBase*)(new ofxDShow());
+//				newCam->initializeWithGUID(cameraGUIDs[j]);
+//				cameraBases.push_back(newCam);
+//			}
+//			delete cam;
+//		}
 	}
 	for (int i=0;i<cameraBases.size();i++)
 	{
