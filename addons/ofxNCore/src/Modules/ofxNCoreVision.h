@@ -13,10 +13,10 @@
 
 //Main
 #include "ofMain.h"
-#ifdef TARGET_WIN32
-	#include "ofxMultiplexerManager.h"
-	#include "ofxMultiplexer.h"
-#endif
+//#ifdef TARGET_WIN32 //FIXME MIGRATION: WHY is multiplexer Windows-specific?!
+#include "ofxMultiplexerManager.h"
+#include "ofxMultiplexer.h"
+//#endif
 #include "ofxOpenCv.h"
 #include "ofxDirList.h"
 #include "ofxVectorMath.h"
@@ -105,7 +105,7 @@ class ofxNCoreVision : public ofxGuiListener
 		calibrationPanel_tracker,
 
 		sourcePanel,
-		
+
 		TemplatePanel,
 		TemplatePanel_minArea,
 		TemplatePanel_maxArea,
@@ -155,7 +155,7 @@ class ofxNCoreVision : public ofxGuiListener
 		kParameter_File,
 		kParameter_LoadTemplateXml,
 		kParameter_SaveTemplateXml,
-		
+
 		cameraGridSettingsPanel,
 		cameraGridSettingsPanel_x,
 		cameraGridSettingsPanel_y,
@@ -200,7 +200,7 @@ public:
 
 		vidPlayer = NULL;
         multiplexer  = NULL;
-		debugMode = debug;		
+		debugMode = debug;
 		//initialize filter
 		filter = NULL;
 		filter_fiducial = NULL;
@@ -314,9 +314,9 @@ public:
 	/***************************************************************
 	 *					Video Capture Devices
 	 ***************************************************************/
-	#ifdef TARGET_WIN32
-		ofxMultiplexer* multiplexer; 
-	#endif
+	//#ifdef TARGET_WIN32 //See note at the top
+    ofxMultiplexer* multiplexer;
+	//#endif
     ofVideoPlayer*	vidPlayer;
 	vector<CAMERATYPE> supportedCameraTypes;
 	ofxMultiplexerManager* multiplexerManager;
@@ -381,7 +381,7 @@ public:
 	/****************************************************
 	 *End xml/app_config.xml variables
 	 *****************************************************/
-	
+
 	//Debug mode variables
 	bool				debugMode;
 
@@ -425,7 +425,7 @@ public:
 
 	// The variable which will check the initilisation of camera
 	//to avoid multiple initialisation
-	bool				cameraInited; 
+	bool				cameraInited;
 
 	//Calibration
     Calibration			calib;
