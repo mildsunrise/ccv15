@@ -28,7 +28,7 @@ public:
     ofxCameraCaptureThread(ofxCameraBase& parent): parent_(parent) {
         isPaused=false;
     }
-    ~ofxCameraCaptureThread();
+    ~ofxCameraCaptureThread() {};
     void threadedFunction();
     friend class ofxCameraBase;
 private:
