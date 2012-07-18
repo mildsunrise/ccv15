@@ -11,10 +11,13 @@
 #include "ofxCameraBase.h"
 #include "ofxCameraBaseSettings.h"
 #include "ofxffmv.h"
-//#include "ofxPS3.h"
-//#include "ofxDShow.h"
-//#include "ofxKinect.h"
-//#include "ofxCMUCamera.h"
+#ifdef TARGET_WIN32
+    #include "ofxPS3.h"
+    #include "ofxDShow.h"
+    #include "ofxKinect.h"
+    #include "ofxCMUCamera.h"
+#endif
+#include "ofxVideoGrabberCam.h"
 #include "ofxMultiplexer.h"
 #include "ofxXmlSettings.h"
 #include <vector>
@@ -76,6 +79,7 @@ private:
 	std::vector<ofxCameraBaseCalibration* > cameraBasesCalibration;
 	std::vector<CAMERATYPE> allowdedCameraTypes;
 	bool isMultiplexerNeedToUpdate;
+	bool videoGrabAllowed;
 };
 
 #endif //OFXMULTIPLEXERMANAGER_H_INCLUDED

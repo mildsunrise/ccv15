@@ -181,6 +181,8 @@ void ofxNCoreVision::loadXMLSettings()
 		supportedCameraTypes.push_back(KINECT);
 	if (XML.getValue("CONFIG:MULTIPLEXER:CAMERATYPES:DIRECTSHOW", 0))
 		supportedCameraTypes.push_back(DIRECTSHOW);
+	if (XML.getValue("CONFIG:MULTIPLEXER:CAMERATYPES:VIDEOGRAB", 0))
+		supportedCameraTypes.push_back(VIDEOGRAB);
 	videoFileName				= XML.getValue("CONFIG:VIDEO:FILENAME", "test_videos/RearDI.m4v");
 	bcamera						= XML.getValue("CONFIG:SOURCE","VIDEO") == "MULTIPLEXER";
 	maxBlobs					= XML.getValue("CONFIG:BLOBS:MAXNUMBER", 20);
@@ -386,7 +388,7 @@ void ofxNCoreVision::_update(ofEventArgs &e)
 	bNewFrame = false;
 	if (bcamera)
 	{
-	#ifdef TARGET_WIN32
+	//#ifdef TARGET_WIN32 // Again, see the note at the top of the header
 		if (calib.calibrating)
 		{
 			if (calib.shouldStart)
@@ -399,7 +401,7 @@ void ofxNCoreVision::_update(ofEventArgs &e)
 		}
 		multiplexer->updateStitchedFrame();
 		bNewFrame = true;
-	#endif
+	//#endif
 	}
 	else //if video
 	{
@@ -501,7 +503,7 @@ void ofxNCoreVision::getPixels()
 {
 	if (bcamera)
 	{
-		#ifdef TARGET_WIN32
+		//#ifdef TARGET_WIN32 // Again, see the note at the top of the header
 			if (multiplexer!=NULL)
 			{
 				int w,h;
@@ -516,7 +518,7 @@ void ofxNCoreVision::getPixels()
 				processedImg.setFromPixels(capturedData, camWidth, camHeight);
 				if(contourFinder.bTrackFiducials || bFidtrackInterface){processedImg_fiducial.setFromPixels(capturedData, camWidth, camHeight);}
 			}
-		#endif
+		//#endif
 	}
 	else
 	{
@@ -544,7 +546,7 @@ void ofxNCoreVision::grabFrameToGPU(GLuint target)
 		glEnable(GL_TEXTURE_2D);
 		//glPixelStorei(1);
 		glBindTexture(GL_TEXTURE_2D, target);
-		#ifdef TARGET_WIN32
+		//#ifdef TARGET_WIN32 // Again, see the note at the top of the header
 		if(multiplexer!=NULL)
 		{
 			int w,h;
@@ -558,7 +560,7 @@ void ofxNCoreVision::grabFrameToGPU(GLuint target)
 			multiplexer->getStitchedFrame(&w,&h,capturedData);
 			glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, camWidth, camHeight, GL_LUMINANCE, GL_UNSIGNED_BYTE, capturedData);
 		}
-		#endif
+		//#endif
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 		glBindTexture(GL_TEXTURE_2D,0);
@@ -1189,7 +1191,7 @@ void ofxNCoreVision::_exit(ofEventArgs &e)
 
 	// AlexP
 	// C++ guarantees that operator delete checks its argument for null-ness
-    #ifdef TARGET_WIN32
+    //#ifdef TARGET_WIN32 // Again, see the note at the top of the header
 	if (multiplexer!=NULL)
 	{
 		delete multiplexer;	multiplexer = NULL;
@@ -1198,7 +1200,7 @@ void ofxNCoreVision::_exit(ofEventArgs &e)
 	{
 		delete multiplexerManager; multiplexerManager = NULL;
 	}
-	#endif
+	//#endif
 	delete vidPlayer; vidPlayer = NULL;
 	delete filter;		filter = NULL;
 	// -------------------------------- SAVE STATE ON EXIT
