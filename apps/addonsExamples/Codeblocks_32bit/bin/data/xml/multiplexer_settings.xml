@@ -1,18 +1,18 @@
 <MULTIPLEXER>
     <CAMERAGRID>
-        <WIDTH>2</WIDTH>
-        <HEIGHT>2</HEIGHT>
+        <WIDTH>1</WIDTH>
+        <HEIGHT>1</HEIGHT>
     </CAMERAGRID>
     <CALIBRATIONGRID>
         <WIDTH>3</WIDTH>
         <HEIGHT>3</HEIGHT>
     </CALIBRATIONGRID>
-    <INTERLEAVE>1</INTERLEAVE>
+    <INTERLEAVE>0</INTERLEAVE>
     <CAMERAS>
         <CAMERA>
             <GUID>0</GUID>
             <TYPE>VIDEOGRAB</TYPE>
-            <INDEX>1</INDEX>
+            <INDEX>0</INDEX>
             <POINTARRAY>
                 <POINT>
                     <X>0,000000</X>
