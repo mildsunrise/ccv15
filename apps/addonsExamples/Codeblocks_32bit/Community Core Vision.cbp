@@ -178,47 +178,47 @@ Legal Copyright:
 		</Unit>
 		<Unit filename="../../../addons/ofxCMU/inc/1394Camera.h">
 			<Option virtualFolder="addons/ofxCMU/inc/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxCMU/inc/1394CameraControl.h">
 			<Option virtualFolder="addons/ofxCMU/inc/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxCMU/inc/1394CameraControlSize.h">
 			<Option virtualFolder="addons/ofxCMU/inc/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxCMU/inc/1394CameraControlStrobe.h">
 			<Option virtualFolder="addons/ofxCMU/inc/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxCMU/inc/1394CameraControlTrigger.h">
 			<Option virtualFolder="addons/ofxCMU/inc/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxCMU/inc/1394camapi.h">
 			<Option virtualFolder="addons/ofxCMU/inc/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxCMU/inc/1394common.h">
 			<Option virtualFolder="addons/ofxCMU/inc/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxCMU/inc/ofxCMUCamera.h">
 			<Option virtualFolder="addons/ofxCMU/inc/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxCMU/lib/1394camera.lib">
 			<Option virtualFolder="addons/ofxCMU/lib/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxCMU/lib/1394camerad.lib">
 			<Option virtualFolder="addons/ofxCMU/lib/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxCMU/src/ofxCMUCamera.cpp">
 			<Option virtualFolder="addons/ofxCMU/src/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxCameraBase/inc/ofxCameraBase.h">
 			<Option virtualFolder="addons/ofxCameraBase/inc/" />
@@ -231,11 +231,11 @@ Legal Copyright:
 		</Unit>
 		<Unit filename="../../../addons/ofxDShow/src/ofxDShow.cpp">
 			<Option virtualFolder="addons/ofxDShow/src/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxDShow/src/ofxDShow.h">
 			<Option virtualFolder="addons/ofxDShow/src/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxDirList/doc/Instructions.txt">
 			<Option virtualFolder="addons/ofxDirList/doc/" />
@@ -399,23 +399,23 @@ Legal Copyright:
 		</Unit>
 		<Unit filename="../../../addons/ofxKinect/dll/CLNUIDevice.dll">
 			<Option virtualFolder="addons/ofxKinect/dll/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxKinect/lib/CLNUIDevice.lib">
 			<Option virtualFolder="addons/ofxKinect/lib/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxKinect/src/CLNUIDevice.h">
 			<Option virtualFolder="addons/ofxKinect/src/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxKinect/src/ofxKinect.cpp">
 			<Option virtualFolder="addons/ofxKinect/src/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxKinect/src/ofxKinect.h">
 			<Option virtualFolder="addons/ofxKinect/src/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxMultiplexer/inc/ofxGUIDHelper.h">
 			<Option virtualFolder="addons/ofxMultiplexer/inc/" />
@@ -437,15 +437,15 @@ Legal Copyright:
 		</Unit>
 		<Unit filename="../../../addons/ofxNCore/example/main.cpp">
 			<Option virtualFolder="addons/ofxNCore/example/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxNCore/example/testApp.cpp">
 			<Option virtualFolder="addons/ofxNCore/example/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxNCore/example/testApp.h">
 			<Option virtualFolder="addons/ofxNCore/example/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxNCore/install.xml">
 			<Option virtualFolder="addons/ofxNCore/" />
@@ -770,143 +770,143 @@ Legal Copyright:
 		</Unit>
 		<Unit filename="../../../addons/ofxOpenCv/libs/opencv/lib/linux/lib_cv.a">
 			<Option virtualFolder="addons/ofxOpenCv/libs/opencv/lib/linux/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxOpenCv/libs/opencv/lib/linux/lib_cv.la">
 			<Option virtualFolder="addons/ofxOpenCv/libs/opencv/lib/linux/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxOpenCv/libs/opencv/lib/linux/lib_cvaux.a">
 			<Option virtualFolder="addons/ofxOpenCv/libs/opencv/lib/linux/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxOpenCv/libs/opencv/lib/linux/lib_cvaux.la">
 			<Option virtualFolder="addons/ofxOpenCv/libs/opencv/lib/linux/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxOpenCv/libs/opencv/lib/linux/lib_cxcore.a">
 			<Option virtualFolder="addons/ofxOpenCv/libs/opencv/lib/linux/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxOpenCv/libs/opencv/lib/linux/lib_cxcore.la">
 			<Option virtualFolder="addons/ofxOpenCv/libs/opencv/lib/linux/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxOpenCv/libs/opencv/lib/linux/libcv.la">
 			<Option virtualFolder="addons/ofxOpenCv/libs/opencv/lib/linux/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxOpenCv/libs/opencv/lib/linux/libcv.lai">
 			<Option virtualFolder="addons/ofxOpenCv/libs/opencv/lib/linux/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxOpenCv/libs/opencv/lib/linux/libcv.so">
 			<Option virtualFolder="addons/ofxOpenCv/libs/opencv/lib/linux/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxOpenCv/libs/opencv/lib/linux/libcv.so.1">
 			<Option virtualFolder="addons/ofxOpenCv/libs/opencv/lib/linux/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxOpenCv/libs/opencv/lib/linux/libcv.so.1.0.0">
 			<Option virtualFolder="addons/ofxOpenCv/libs/opencv/lib/linux/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxOpenCv/libs/opencv/lib/linux/libcv.so.1.0.0T">
 			<Option virtualFolder="addons/ofxOpenCv/libs/opencv/lib/linux/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxOpenCv/libs/opencv/lib/linux/libcvaux.la">
 			<Option virtualFolder="addons/ofxOpenCv/libs/opencv/lib/linux/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxOpenCv/libs/opencv/lib/linux/libcvaux.lai">
 			<Option virtualFolder="addons/ofxOpenCv/libs/opencv/lib/linux/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxOpenCv/libs/opencv/lib/linux/libcvaux.so">
 			<Option virtualFolder="addons/ofxOpenCv/libs/opencv/lib/linux/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxOpenCv/libs/opencv/lib/linux/libcvaux.so.1">
 			<Option virtualFolder="addons/ofxOpenCv/libs/opencv/lib/linux/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxOpenCv/libs/opencv/lib/linux/libcvaux.so.1.0.0">
 			<Option virtualFolder="addons/ofxOpenCv/libs/opencv/lib/linux/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxOpenCv/libs/opencv/lib/linux/libcvaux.so.1.0.0T">
 			<Option virtualFolder="addons/ofxOpenCv/libs/opencv/lib/linux/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxOpenCv/libs/opencv/lib/linux/libcxcore.la">
 			<Option virtualFolder="addons/ofxOpenCv/libs/opencv/lib/linux/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxOpenCv/libs/opencv/lib/linux/libcxcore.lai">
 			<Option virtualFolder="addons/ofxOpenCv/libs/opencv/lib/linux/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxOpenCv/libs/opencv/lib/linux/libcxcore.so">
 			<Option virtualFolder="addons/ofxOpenCv/libs/opencv/lib/linux/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxOpenCv/libs/opencv/lib/linux/libcxcore.so.1">
 			<Option virtualFolder="addons/ofxOpenCv/libs/opencv/lib/linux/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxOpenCv/libs/opencv/lib/linux/libcxcore.so.1.0.0">
 			<Option virtualFolder="addons/ofxOpenCv/libs/opencv/lib/linux/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxOpenCv/libs/opencv/lib/vs2008/cv110.lib">
 			<Option virtualFolder="addons/ofxOpenCv/libs/opencv/lib/vs2008/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxOpenCv/libs/opencv/lib/vs2008/cv110d.lib">
 			<Option virtualFolder="addons/ofxOpenCv/libs/opencv/lib/vs2008/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxOpenCv/libs/opencv/lib/vs2008/cvaux110.lib">
 			<Option virtualFolder="addons/ofxOpenCv/libs/opencv/lib/vs2008/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxOpenCv/libs/opencv/lib/vs2008/cvaux110d.lib">
 			<Option virtualFolder="addons/ofxOpenCv/libs/opencv/lib/vs2008/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxOpenCv/libs/opencv/lib/vs2008/cxcore110.lib">
 			<Option virtualFolder="addons/ofxOpenCv/libs/opencv/lib/vs2008/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxOpenCv/libs/opencv/lib/vs2008/cxcore110d.lib">
 			<Option virtualFolder="addons/ofxOpenCv/libs/opencv/lib/vs2008/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxOpenCv/libs/opencv/lib/vs2010/cv110.lib">
 			<Option virtualFolder="addons/ofxOpenCv/libs/opencv/lib/vs2010/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxOpenCv/libs/opencv/lib/vs2010/cv110d.lib">
 			<Option virtualFolder="addons/ofxOpenCv/libs/opencv/lib/vs2010/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxOpenCv/libs/opencv/lib/vs2010/cvaux110.lib">
 			<Option virtualFolder="addons/ofxOpenCv/libs/opencv/lib/vs2010/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxOpenCv/libs/opencv/lib/vs2010/cvaux110d.lib">
 			<Option virtualFolder="addons/ofxOpenCv/libs/opencv/lib/vs2010/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxOpenCv/libs/opencv/lib/vs2010/cxcore110.lib">
 			<Option virtualFolder="addons/ofxOpenCv/libs/opencv/lib/vs2010/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxOpenCv/libs/opencv/lib/vs2010/cxcore110d.lib">
 			<Option virtualFolder="addons/ofxOpenCv/libs/opencv/lib/vs2010/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxOpenCv/src/ofxCvBlob.h">
 			<Option virtualFolder="addons/ofxOpenCv/src/" />
@@ -1042,27 +1042,27 @@ Legal Copyright:
 		</Unit>
 		<Unit filename="../../../addons/ofxPS3/dll/CLEyeMulticam.dll">
 			<Option virtualFolder="addons/ofxPS3/dll/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxPS3/dll/winusb.dll">
 			<Option virtualFolder="addons/ofxPS3/dll/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxPS3/lib/CLEyeMulticam.lib">
 			<Option virtualFolder="addons/ofxPS3/lib/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxPS3/src/CLEyeMulticam.h">
 			<Option virtualFolder="addons/ofxPS3/src/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxPS3/src/ofxPS3.cpp">
 			<Option virtualFolder="addons/ofxPS3/src/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxPS3/src/ofxPS3.h">
 			<Option virtualFolder="addons/ofxPS3/src/" />
-			<Option target="Release" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="../../../addons/ofxThread/docs/Instructions.txt">
 			<Option virtualFolder="addons/ofxThread/docs/" />
