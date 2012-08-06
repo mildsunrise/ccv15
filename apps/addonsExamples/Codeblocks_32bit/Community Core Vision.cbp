@@ -164,7 +164,7 @@ Legal Copyright:
 			<Add after="#" />
 			<Add after="#      copy libs and shell script to bin directory:" />
 			<Add after="#" />
-			<Add after="cp -r ../../../export/linux/libs $(PROJECT_DIR)bin/" />
+			<Add after="cp -a ../../../export/linux/libs $(PROJECT_DIR)bin/" />
 			<Mode after="always" />
 		</ExtraCommands>
 		<Unit filename="../../../addons/ofxCameraBase/inc/ofxVideoGrabberCam.h">
